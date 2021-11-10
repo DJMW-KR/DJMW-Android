@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/Home"
+        android:title="질문"
+        android:icon="@drawable/bottom_icon_question"/>
+    <item
+        android:id="@+id/Notification"
+        android:title="랭킹"
+        android:icon="@drawable/bottom_icon_ranking"/>
+    <item
+        android:id="@+id/News"
+        android:title="게시판"
+        android:icon="@drawable/bottom_icon_post"/>
+    <item
+        android:id="@+id/Setting"
+        android:title="프로필"
+        android:icon="@drawable/bottom_icon_profile"/>
+</menu>
