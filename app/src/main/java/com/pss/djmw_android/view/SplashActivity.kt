@@ -1,4 +1,4 @@
-package com.pss.djmw_android
+package com.pss.djmw_android.view
 
 import android.graphics.Color
 import android.os.Build
@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import com.pss.djmw_android.R
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
