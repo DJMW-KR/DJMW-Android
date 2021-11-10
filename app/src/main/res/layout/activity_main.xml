@@ -9,8 +9,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".view.MainActivity">
 
         <fragment
@@ -26,6 +26,10 @@
             android:id="@+id/bottom_nav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:theme="@style/Widget.BottomNavigationView"
+            android:background="@color/white"
+            app:itemIconTint="@drawable/menu_selector_color"
+            app:itemTextColor="@drawable/menu_selector_color"
             app:menu="@menu/bottom_navigation_menu" />
     </LinearLayout>
 </layout>

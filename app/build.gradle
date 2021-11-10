@@ -85,4 +85,7 @@ dependencies {
 
     //그라데이션
     implementation 'com.github.GIGAMOLE:QuatroGrade:1.0.0'
+
+    //bottom nav bar
+    implementation 'com.etebarian:meow-bottom-navigation:1.3.1'
 }
