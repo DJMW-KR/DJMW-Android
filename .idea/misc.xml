@@ -3,15 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/apple/AndroidStudioProjects/DJMWAndroid/app/src/main/res/drawable/man_box.xml" value="0.2962962962962963" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/DJMWAndroid/app/src/main/res/drawable/menu_select_color.xml" value="0.1" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/DJMWAndroid/app/src/main/res/drawable/tab_indicator.xml" value="0.13425925925925927" />
+        <entry key="..\:/Users/apple/AndroidStudioProjects/DJMWAndroid/app/src/main/res/drawable/woman.xml" value="0.2962962962962963" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/DJMWAndroid/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/DJMWAndroid/app/src/main/res/layout/activity_splash.xml" value="0.16799999999999998" />
-        <entry key="..\:/Users/apple/AndroidStudioProjects/DJMWAndroid/app/src/main/res/layout/fragment_answer.xml" value="0.22395833333333334" />
+        <entry key="..\:/Users/apple/AndroidStudioProjects/DJMWAndroid/app/src/main/res/layout/fragment_answer.xml" value="0.4234930448222566" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/DJMWAndroid/app/src/main/res/layout/fragment_answer_me.xml" value="0.22395833333333334" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/DJMWAndroid/app/src/main/res/layout/fragment_post.xml" value="0.18292682926829268" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/DJMWAndroid/app/src/main/res/layout/fragment_profile.xml" value="0.18292682926829268" />
-        <entry key="..\:/Users/apple/AndroidStudioProjects/DJMWAndroid/app/src/main/res/layout/fragment_question.xml" value="0.176" />
+        <entry key="..\:/Users/apple/AndroidStudioProjects/DJMWAndroid/app/src/main/res/layout/fragment_question.xml" value="0.4033041788143829" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/DJMWAndroid/app/src/main/res/layout/fragment_ranking.xml" value="0.18292682926829268" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/DJMWAndroid/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.1" />
       </map>
