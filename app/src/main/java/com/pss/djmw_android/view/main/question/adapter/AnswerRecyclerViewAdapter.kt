@@ -1,4 +1,4 @@
-package com.pss.djmw_android.view.question.adapter
+package com.pss.djmw_android.view.main.question.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

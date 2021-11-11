@@ -1,14 +1,8 @@
-package com.pss.djmw_android.view
+package com.pss.djmw_android.view.main
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationBarView
 import com.pss.djmw_android.R
 import com.pss.djmw_android.base.BaseActivity
 import com.pss.djmw_android.databinding.ActivityMainBinding

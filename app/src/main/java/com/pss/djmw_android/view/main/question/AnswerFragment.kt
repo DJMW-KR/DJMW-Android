@@ -1,14 +1,9 @@
-package com.pss.djmw_android.view.question
+package com.pss.djmw_android.view.main.question
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.pss.djmw_android.R
 import com.pss.djmw_android.base.BaseFragment
 import com.pss.djmw_android.databinding.FragmentAnswerBinding
-import com.pss.djmw_android.view.question.adapter.AnswerRecyclerViewAdapter
+import com.pss.djmw_android.view.main.question.adapter.AnswerRecyclerViewAdapter
 import com.pss.djmw_android.widget.extension.showVertical
 
 class AnswerFragment : BaseFragment<FragmentAnswerBinding>(R.layout.fragment_answer) {

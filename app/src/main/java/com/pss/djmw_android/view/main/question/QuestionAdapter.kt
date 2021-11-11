@@ -1,4 +1,4 @@
-package com.pss.djmw_android.view.question
+package com.pss.djmw_android.view.main.question
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

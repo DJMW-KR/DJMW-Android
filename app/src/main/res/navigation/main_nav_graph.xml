@@ -7,22 +7,22 @@
 
     <fragment
         android:id="@+id/rankingFragment"
-        android:name="com.pss.djmw_android.view.RankingFragment"
+        android:name="com.pss.djmw_android.view.main.RankingFragment"
         tools:layout="@layout/fragment_ranking"
         android:label="RankingFragment" />
     <fragment
         android:id="@+id/questionFragment"
-        android:name="com.pss.djmw_android.view.question.QuestionFragment"
+        android:name="com.pss.djmw_android.view.main.question.QuestionFragment"
         tools:layout="@layout/fragment_question"
         android:label="QuestionFragment" />
     <fragment
         android:id="@+id/postFragment"
-        android:name="com.pss.djmw_android.view.PostFragment"
+        android:name="com.pss.djmw_android.view.main.PostFragment"
         tools:layout="@layout/fragment_post"
         android:label="PostFragment" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.pss.djmw_android.view.ProfileFragment"
+        android:name="com.pss.djmw_android.view.main.ProfileFragment"
         tools:layout="@layout/fragment_profile"
         android:label="ProfileFragment" />
 </navigation>

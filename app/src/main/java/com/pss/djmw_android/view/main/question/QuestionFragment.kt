@@ -1,10 +1,5 @@
-package com.pss.djmw_android.view.question
+package com.pss.djmw_android.view.main.question
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.google.android.material.tabs.TabLayoutMediator
 import com.pss.djmw_android.R
 import com.pss.djmw_android.base.BaseFragment

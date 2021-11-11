@@ -1,4 +1,4 @@
-package com.pss.djmw_android.view
+package com.pss.djmw_android.view.main
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,10 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.pss.djmw_android.R
 import com.pss.djmw_android.base.BaseFragment
-import com.pss.djmw_android.databinding.FragmentRankingBinding
+import com.pss.djmw_android.databinding.FragmentPostBinding
 
-
-class RankingFragment : BaseFragment<FragmentRankingBinding>(R.layout.fragment_ranking) {
+class PostFragment : BaseFragment<FragmentPostBinding>(R.layout.fragment_post) {
     override fun init() {
 
     }

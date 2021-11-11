@@ -1,4 +1,4 @@
-package com.pss.djmw_android.view
+package com.pss.djmw_android.view.main
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
