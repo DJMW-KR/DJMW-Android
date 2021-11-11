@@ -7,16 +7,29 @@
         <item>#32D7ED</item>
     </array>
 
-    <array name="top_colors">
+    <array name="splash_top_colors">
         <item>#DCAFAF</item>
         <item>#F87FB4</item>
         <item>#EA7FBF</item>
     </array>
-    <array name="bottom_colors">
+    <array name="splash_bottom_colors">
         <item>#B38686</item>
         <item>#CF9C9C</item>
         <item>#FF9D9D</item>
     </array>
+
+    <array name="sing_in_top_colors">
+        <item>#F4D1D1</item>
+        <item>#E6A5C2</item>
+        <item>#E6ACCF</item>
+    </array>
+    <array name="sign_in_bottom_colors">
+        <item>#BA9E9E</item>
+        <item>#EAC8C8</item>
+        <item>#CAABAB</item>
+    </array>
+
+
     <string-array name="top_positions">
         <item>0.0</item>
         <item>0.5</item>

@@ -16,9 +16,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:qgv_bottomColors="@array/bottom_colors"
+        app:qgv_bottomColors="@array/splash_bottom_colors"
         app:qgv_bottomPositions="@array/bottom_positions"
-        app:qgv_topColors="@array/top_colors"
+        app:qgv_topColors="@array/splash_top_colors"
         app:qgv_topPositions="@array/top_positions" />
 
     <LinearLayout
