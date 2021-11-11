@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/rankingFragment">
+    app:startDestination="@id/questionFragment">
 
     <fragment
         android:id="@+id/rankingFragment"
@@ -12,7 +12,7 @@
         android:label="RankingFragment" />
     <fragment
         android:id="@+id/questionFragment"
-        android:name="com.pss.djmw_android.view.QuestionFragment"
+        android:name="com.pss.djmw_android.view.question.QuestionFragment"
         tools:layout="@layout/fragment_question"
         android:label="QuestionFragment" />
     <fragment
