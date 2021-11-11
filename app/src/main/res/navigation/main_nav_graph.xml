@@ -25,4 +25,9 @@
         android:name="com.pss.djmw_android.view.main.ProfileFragment"
         tools:layout="@layout/fragment_profile"
         android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.pss.djmw_android.view.signin.SignInFragment"
+        tools:layout="@layout/fragment_sign_in"
+        android:label="SignInFragment" />
 </navigation>
