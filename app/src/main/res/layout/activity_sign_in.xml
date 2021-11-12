@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="activity"
+            type="com.pss.djmw_android.view.signin.SignInActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -55,13 +57,15 @@
             app:layout_constraintStart_toStartOf="@+id/textView7" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/kakao_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sign_in_kakao_btn_margin"
+            android:layout_marginTop="100dp"
+            android:onClick="@{activity::clickKakaoLoginBtn}"
+            android:layout_marginEnd="@dimen/sign_in_kakao_btn_margin"
             android:background="@drawable/kakao_btn"
             android:padding="15dp"
-            android:layout_marginStart="@dimen/sign_in_kakao_btn_margin"
-            android:layout_marginEnd="@dimen/sign_in_kakao_btn_margin"
-            android:layout_marginTop="100dp"
             app:layout_constraintBottom_toBottomOf="@+id/custom_quatro_grade_view"
             app:layout_constraintTop_toBottomOf="@+id/textView7">
 
@@ -69,8 +73,8 @@
                 android:id="@+id/kakao_logo"
                 android:layout_width="@dimen/kakao_logo_size"
                 android:layout_height="@dimen/kakao_logo_size"
-                android:src="@drawable/kakaotalk_logo"
                 android:layout_marginStart="10dp"
+                android:src="@drawable/kakaotalk_logo"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

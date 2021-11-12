@@ -4,8 +4,10 @@ import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import com.kakao.sdk.common.util.Utility.getKeyHash
 import com.pss.djmw_android.R
 import com.pss.djmw_android.base.BaseActivity
 import com.pss.djmw_android.databinding.ActivitySplashBinding
@@ -14,6 +16,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
 
     override fun init() {
         checkSdkVersion()
+        Log.d("TAG",getKeyHash(applicationContext))
     }
 
     private fun checkSdkVersion(){
