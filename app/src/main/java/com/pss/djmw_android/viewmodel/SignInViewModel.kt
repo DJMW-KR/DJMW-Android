@@ -21,18 +21,25 @@ class SignInViewModel @Inject constructor(
     val eventKakaoLogin: LiveData<Any> get() = _eventKakaoLogin
     private val _eventKakaoLogin = SingleLiveEvent<Any>()
 
+    val eventSaveDataStoreSuccess: LiveData<String> get() = _eventSaveDataStoreSuccess
+    private val _eventSaveDataStoreSuccess = SingleLiveEvent<String>()
+
     fun clickKakaoLoginBtn() = _eventKakaoLogin.call()
 
     fun setUserInfoFirebase(userInfo: UserInfo) = viewModelScope.launch {
         signInRepository.setUserInfo(userInfo)
             .addOnSuccessListener {
+                val result = "YES"
                 viewModelScope.launch {
-                    dataStoreModule.setUserInfoSave("YES")
+                    dataStoreModule.setUserInfoSave(result)
+                    _eventSaveDataStoreSuccess.postValue(result)
                 }
             }
             .addOnFailureListener {
+                val result = "NO"
                 viewModelScope.launch {
-                    dataStoreModule.setUserInfoSave("NO")
+                    dataStoreModule.setUserInfoSave(result)
+                    _eventSaveDataStoreSuccess.postValue(result)
                 }
             }
     }

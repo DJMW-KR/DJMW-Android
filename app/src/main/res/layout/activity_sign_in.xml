@@ -14,6 +14,8 @@
         android:layout_height="match_parent"
         tools:context=".view.signin.SignInActivity">
 
+
+
         <com.gigamole.quatrograde.QuatroGradeView
             android:id="@+id/custom_quatro_grade_view"
             android:layout_width="match_parent"
@@ -94,6 +96,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:visibility="invisible"
+            android:indeterminateTint="@color/main_color"
+            app:layout_constraintBottom_toBottomOf="@+id/custom_quatro_grade_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

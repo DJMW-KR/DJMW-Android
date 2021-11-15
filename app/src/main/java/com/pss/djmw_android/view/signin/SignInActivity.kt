@@ -20,6 +20,8 @@ import com.kakao.sdk.user.UserApiClient
 import com.pss.djmw_android.viewmodel.SignInViewModel
 import com.kakao.sdk.user.model.User
 import com.pss.djmw_android.data.model.UserInfo
+import com.pss.djmw_android.view.main.MainActivity
+import com.pss.djmw_android.widget.extension.startActivityWithFinish
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,7 +36,10 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
         observeViewModel()
     }
 
-    fun clickKakaoLoginBtn(view: View) = viewModel.clickKakaoLoginBtn()
+    fun clickKakaoLoginBtn(view: View) {
+        binding.loading.visibility = View.VISIBLE
+        viewModel.clickKakaoLoginBtn()
+    }
 
     private fun observeViewModel() {
         viewModel.eventKakaoLogin.observe(this, {
@@ -44,6 +49,7 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
                         when (error.message) {
                             "KakaoTalk not installed" -> shortShowToast("카카오톡이 다운로드 되어있지 않습니다")
                         }
+                        binding.loading.visibility = View.INVISIBLE
                         Log.e("TAG", "로그인 실패 ${error.message}")
                     } else if (oAuthToken != null) {
                         Log.i("TAG", "로그인 성공(토큰) : " + oAuthToken.accessToken)
@@ -52,18 +58,31 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
                         UserApiClient.instance.me { user, error ->
                             if (error != null) {
                                 Log.e("TAG", "사용자 정보 요청 실패", error)
-                            }
-                            else if (user != null) {
-                                Log.i("TAG", "사용자 정보 요청 성공" +
-                                        "\n회원번호: ${user.id}" +
-                                        "\n닉네임: ${user.kakaoAccount?.profile?.nickname}")
-                                viewModel.setUserInfoFirebase(UserInfo(userId = "${user.id}", userName = "${user.kakaoAccount?.profile?.nickname}"))
-
+                            } else if (user != null) {
+                                Log.i(
+                                    "TAG", "사용자 정보 요청 성공" +
+                                            "\n회원번호: ${user.id}" +
+                                            "\n닉네임: ${user.kakaoAccount?.profile?.nickname}"
+                                )
+                                viewModel.setUserInfoFirebase(
+                                    UserInfo(
+                                        userId = "${user.id}",
+                                        userName = "${user.kakaoAccount?.profile?.nickname}"
+                                    )
+                                )
                             }
                         }
 
                     }
                 }
+        })
+
+        viewModel.eventSaveDataStoreSuccess.observe(this, { result ->
+            binding.loading.visibility = View.INVISIBLE
+            when (result) {
+                "YES" -> this.startActivityWithFinish(this, MainActivity::class.java)
+                "NO" -> longShowToast("회원가입에 실패했습니다, 다시 시도해 주세요")
+            }
         })
     }
 
