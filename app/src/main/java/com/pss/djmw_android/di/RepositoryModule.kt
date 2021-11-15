@@ -2,6 +2,7 @@ package com.pss.djmw_android.di
 
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
+import com.pss.djmw_android.repository.SignInRepository
 import com.pss.djmw_android.repository.SplashRepository
 import dagger.Module
 import dagger.Provides
@@ -19,4 +20,11 @@ class RepositoryModule {
         firebaseDatabase: FirebaseDatabase,
         firestore: FirebaseFirestore
     ) = SplashRepository(firebaseDatabase, firestore)
+
+    @Provides
+    @Singleton
+    fun provideSignInRepository(
+        firebaseDatabase: FirebaseDatabase,
+        firestore: FirebaseFirestore
+    ) = SignInRepository(firebaseDatabase, firestore)
 }
