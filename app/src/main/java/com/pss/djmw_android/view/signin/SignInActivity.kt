@@ -12,14 +12,17 @@ import androidx.activity.viewModels
 import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.KakaoSdkError
+import com.kakao.sdk.talk.TalkApiClient
 import com.pss.djmw_android.R
 import com.pss.djmw_android.base.BaseActivity
 import com.pss.djmw_android.databinding.ActivitySignInBinding
 import com.kakao.sdk.user.UserApiClient
 import com.pss.djmw_android.viewmodel.SignInViewModel
 import com.kakao.sdk.user.model.User
+import com.pss.djmw_android.data.model.UserInfo
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sign_in) {
     private val viewModel by viewModels<SignInViewModel>()
 
@@ -44,7 +47,21 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
                         Log.e("TAG", "로그인 실패 ${error.message}")
                     } else if (oAuthToken != null) {
                         Log.i("TAG", "로그인 성공(토큰) : " + oAuthToken.accessToken)
-                        shortShowToast("로그인에 성공했습니다")
+
+                        // 사용자 정보 요청 (기본)
+                        UserApiClient.instance.me { user, error ->
+                            if (error != null) {
+                                Log.e("TAG", "사용자 정보 요청 실패", error)
+                            }
+                            else if (user != null) {
+                                Log.i("TAG", "사용자 정보 요청 성공" +
+                                        "\n회원번호: ${user.id}" +
+                                        "\n닉네임: ${user.kakaoAccount?.profile?.nickname}")
+                                viewModel.setUserInfoFirebase(UserInfo(userId = "${user.id}", userName = "${user.kakaoAccount?.profile?.nickname}"))
+
+                            }
+                        }
+
                     }
                 }
         })

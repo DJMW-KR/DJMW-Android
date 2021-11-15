@@ -20,6 +20,9 @@ import com.pss.djmw_android.view.signin.SignInActivity
 import com.pss.djmw_android.viewmodel.SplashViewModel
 import com.pss.djmw_android.widget.extension.startActivityWithFinish
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_splash) {
@@ -32,9 +35,9 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         checkSdkVersion()
         checkVersion()
             .addOnSuccessListener {
-                if (it.value == appVersion) {
-                    checkKakaoLogin()
-                } else longShowToast("앱이 최신버전이 아닙니다, 앱을 업데이트 하세요!")
+                    if (it.value == appVersion) {
+                        checkKakaoLogin()
+                    } else longShowToast("앱이 최신버전이 아닙니다, 앱을 업데이트 하세요!")
             }
             .addOnFailureListener {
                 shortShowToast("인터넷 연결을 확인하세요")
@@ -56,7 +59,13 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
                     }
                 } else {
                     //토큰 유효성 체크 성공(필요 시 토큰 갱신됨)
-                    this.startActivityWithFinish(this, MainActivity::class.java)
+                        Log.d("TAG","checkKakaoLogin 토큰 유효성 체크 성공")
+                    CoroutineScope(Dispatchers.Main).launch {
+                        Log.d("TAG","datastore 값 :  ${viewModel.readDataStore()}")
+                        if (viewModel.readDataStore() == "YES"){
+                            this@SplashActivity.startActivityWithFinish(this@SplashActivity, MainActivity::class.java)
+                        }else startSignIn()
+                    }
                 }
             }
         } else {
