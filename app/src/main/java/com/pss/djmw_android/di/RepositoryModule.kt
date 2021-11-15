@@ -2,7 +2,7 @@ package com.pss.djmw_android.di
 
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
-import com.pss.djmw_android.repository.SignInRepository
+import com.pss.djmw_android.repository.SplashRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,8 +15,8 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideSignInRepository(
+    fun provideSplashRepository(
         firebaseDatabase: FirebaseDatabase,
         firestore: FirebaseFirestore
-    ) = SignInRepository(firebaseDatabase, firestore)
+    ) = SplashRepository(firebaseDatabase, firestore)
 }
