@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import androidx.activity.viewModels
 import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.common.model.KakaoSdkError
 import com.kakao.sdk.common.util.Utility.getKeyHash
@@ -16,14 +17,31 @@ import com.pss.djmw_android.base.BaseActivity
 import com.pss.djmw_android.databinding.ActivitySplashBinding
 import com.pss.djmw_android.view.main.MainActivity
 import com.pss.djmw_android.view.signin.SignInActivity
+import com.pss.djmw_android.viewmodel.SplashViewModel
 import com.pss.djmw_android.widget.extension.startActivityWithFinish
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_splash) {
+    private val viewModel by viewModels<SplashViewModel>()
+
+    // TODO: 2021-11-15 앱을 업데이트 할때 마다 버전 업 해주기기
+    private val appVersion = "1.0.0"
 
     override fun init() {
         checkSdkVersion()
-        checkKakaoLogin()
+        checkVersion()
+            .addOnSuccessListener {
+                if (it.value == appVersion) {
+                    checkKakaoLogin()
+                } else longShowToast("앱이 최신버전이 아닙니다, 앱을 업데이트 하세요!")
+            }
+            .addOnFailureListener {
+                shortShowToast("인터넷 연결을 확인하세요")
+            }
     }
+
+    private fun checkVersion() = viewModel.checkAppVersion()
 
     private fun checkKakaoLogin() {
         if (AuthApiClient.instance.hasToken()) {
@@ -38,7 +56,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
                     }
                 } else {
                     //토큰 유효성 체크 성공(필요 시 토큰 갱신됨)
-                    this.startActivityWithFinish(this,MainActivity::class.java)
+                    this.startActivityWithFinish(this, MainActivity::class.java)
                 }
             }
         } else {

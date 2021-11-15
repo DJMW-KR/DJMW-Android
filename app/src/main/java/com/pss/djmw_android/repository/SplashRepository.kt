@@ -8,5 +8,5 @@ class SplashRepository @Inject constructor(
     private val firebaseDatabase: FirebaseDatabase,
     private val firestore: FirebaseFirestore
 ) {
-    fun versionCheck() = firebaseDatabase.reference.child("version")
+    fun versionCheck() = firebaseDatabase.reference.child("version").get()
 }
