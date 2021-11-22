@@ -7,9 +7,11 @@ import com.pss.djmw_android.databinding.FragmentAnswerMeBinding
 import com.pss.djmw_android.view.main.question.adapter.AnswerRecyclerViewAdapter
 import com.pss.djmw_android.viewmodel.MainViewModel
 import com.pss.djmw_android.widget.extension.showVertical
+import nl.invissvenska.modalbottomsheetdialog.Item
+import nl.invissvenska.modalbottomsheetdialog.ModalBottomSheetDialog
 
 // 선택하기
-class AnswerMeFragment : BaseFragment<FragmentAnswerMeBinding>(R.layout.fragment_answer_me) {
+class AnswerMeFragment : BaseFragment<FragmentAnswerMeBinding>(R.layout.fragment_answer_me){
     private val mainViewModel by activityViewModels<MainViewModel>()
 
 
@@ -19,6 +21,7 @@ class AnswerMeFragment : BaseFragment<FragmentAnswerMeBinding>(R.layout.fragment
 
     private fun initRecyclerView() {
         binding.answerMeRecyclerView.showVertical(requireContext())
-        binding.answerMeRecyclerView.adapter = AnswerRecyclerViewAdapter(mainViewModel)
+        binding.answerMeRecyclerView.adapter = AnswerRecyclerViewAdapter(mainViewModel, this)
     }
+
 }

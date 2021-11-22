@@ -19,7 +19,12 @@ class MainViewModel @Inject constructor(
     val eventGetQuestion: LiveData<Boolean> get() = _eventGetQuestion
     private val _eventGetQuestion = SingleLiveEvent<Boolean>()
 
+    //가져온 질문 값
     var questionList = arrayListOf<Question>()
+
+    //질문 클릭시 몇번째 아이템인지 확인 값
+    var questionItemPosition = 0
+
 
     fun getQuestion() = try {
         mainRepository.getQuestion()
