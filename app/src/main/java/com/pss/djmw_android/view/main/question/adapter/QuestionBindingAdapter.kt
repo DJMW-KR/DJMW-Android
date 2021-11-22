@@ -14,6 +14,6 @@ object QuestionBindingAdapter {
     @JvmStatic
     @BindingAdapter("set_people")
     fun setPeople(text: TextView, people: String) {
-        text.text = people
+        text.text = "참여인원 : $people"
     }
 }
