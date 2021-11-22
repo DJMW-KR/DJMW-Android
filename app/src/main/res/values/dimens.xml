@@ -3,4 +3,5 @@
     <dimen name="design_bottom_navigation_height" tools:override="true">60dp</dimen>
     <dimen name="sign_in_kakao_btn_margin">35dp</dimen>
     <dimen name="kakao_logo_size">20dp</dimen>
+    <dimen name="question_bottom_sheet_size">17sp</dimen>
 </resources>

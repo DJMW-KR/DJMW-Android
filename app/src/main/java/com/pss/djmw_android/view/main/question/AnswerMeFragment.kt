@@ -7,8 +7,7 @@ import com.pss.djmw_android.databinding.FragmentAnswerMeBinding
 import com.pss.djmw_android.view.main.question.adapter.AnswerRecyclerViewAdapter
 import com.pss.djmw_android.viewmodel.MainViewModel
 import com.pss.djmw_android.widget.extension.showVertical
-import nl.invissvenska.modalbottomsheetdialog.Item
-import nl.invissvenska.modalbottomsheetdialog.ModalBottomSheetDialog
+
 
 // 선택하기
 class AnswerMeFragment : BaseFragment<FragmentAnswerMeBinding>(R.layout.fragment_answer_me){

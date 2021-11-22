@@ -8,8 +8,6 @@ import com.pss.djmw_android.databinding.FragmentAnswerBinding
 import com.pss.djmw_android.view.main.question.adapter.AnswerRecyclerViewAdapter
 import com.pss.djmw_android.viewmodel.MainViewModel
 import com.pss.djmw_android.widget.extension.showVertical
-import nl.invissvenska.modalbottomsheetdialog.Item
-import nl.invissvenska.modalbottomsheetdialog.ModalBottomSheetDialog
 
 // 대답하기
 class AnswerFragment : BaseFragment<FragmentAnswerBinding>(R.layout.fragment_answer){

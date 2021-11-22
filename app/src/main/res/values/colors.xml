@@ -10,4 +10,5 @@
     <color name="gray">#AEAEAE</color>
     <color name="main_color">#F05D6C</color>
     <color name="sub_color">#FDB0C0</color>
+    <color name="question_bottom_sheet_color">#8A8A8A</color>
 </resources>
