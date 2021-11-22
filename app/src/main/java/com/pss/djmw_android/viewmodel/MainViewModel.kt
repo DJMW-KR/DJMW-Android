@@ -27,11 +27,11 @@ class MainViewModel @Inject constructor(
                 viewModelScope.launch {
                     for (item in it.documents){
                         var question = item.toObject(Question::class.java)
+                        Log.d("TAG","MainViewModel getQuestion 메소드 안 : $question")
                         questionList.add(question!!)
                     }
-
-                    _eventGetQuestion.postValue(true)
                 }
+                _eventGetQuestion.postValue(true)
 
                 /*   Log.d("TAG","${it.documents[0]}")
                    //_eventGetQuestion.postValue(it)

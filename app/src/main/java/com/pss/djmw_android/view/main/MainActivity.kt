@@ -6,6 +6,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pss.djmw_android.R
 import com.pss.djmw_android.base.BaseActivity
+import com.pss.djmw_android.data.model.Question
 import com.pss.djmw_android.databinding.ActivityMainBinding
 import com.pss.djmw_android.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,14 +17,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
 
     override fun init() {
-        observeViewModel()
-        viewModel.getQuestion()
-    }
-
-    private fun observeViewModel(){
-        viewModel.eventGetQuestion.observe(this, {
-            initBottomNavBar()
-        })
+        viewModel.questionList = intent.getParcelableArrayListExtra<Question>("questionList") as ArrayList<Question>
+        initBottomNavBar()
     }
 
     private fun initBottomNavBar(){

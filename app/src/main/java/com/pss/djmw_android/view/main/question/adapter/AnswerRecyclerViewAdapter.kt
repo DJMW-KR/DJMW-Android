@@ -1,5 +1,6 @@
 package com.pss.djmw_android.view.main.question.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -32,6 +33,7 @@ class AnswerRecyclerViewAdapter (
     }
 
     override fun onBindViewHolder(holder: AnswerRecyclerViewHolder, position: Int) {
+        Log.d("TAG","AnswerRecyclerViewAdapter안 questionList : ${viewModel.questionList}")
        holder.bind(viewModel.questionList[position])
     }
 
