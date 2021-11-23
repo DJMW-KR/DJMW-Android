@@ -3,6 +3,7 @@ package com.pss.djmw_android.view.main.question.adapter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +14,7 @@ import com.pss.djmw_android.viewmodel.MainViewModel
 
 class AnswerRecyclerViewAdapter(
     private val viewModel: MainViewModel,
-    private val fragment : Fragment
+    private val fragment: Fragment
 ) : RecyclerView.Adapter<AnswerRecyclerViewAdapter.AnswerRecyclerViewHolder>() {
 
     init {
@@ -41,13 +42,15 @@ class AnswerRecyclerViewAdapter(
         holder.binding.itemFrame.setOnClickListener {
             viewModel.questionItemPosition = position
             val orderBottomDialogFragment: OrderBottomDialogFragment = OrderBottomDialogFragment {
-                Log.d("TAG","bottomDialogSheet item : $it")
-             /*   when (it) {
-                    0 -> Toast.makeText(this, "추천순", Toast.LENGTH_SHORT).show()
-                    1 -> Toast.makeText(this, "리뷰순", Toast.LENGTH_SHORT).show()
-                }*/
+
+                Toast.makeText(fragment.requireContext(), "성공적으로 반영되었습니다!", Toast.LENGTH_SHORT)
+                    .show()
+
             }
-            orderBottomDialogFragment.show(fragment.requireActivity().supportFragmentManager, orderBottomDialogFragment.tag)
+            orderBottomDialogFragment.show(
+                fragment.requireActivity().supportFragmentManager,
+                orderBottomDialogFragment.tag
+            )
 
         }
 

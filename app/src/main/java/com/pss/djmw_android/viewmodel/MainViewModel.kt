@@ -26,6 +26,10 @@ class MainViewModel @Inject constructor(
     var questionItemPosition = 0
 
 
+    fun setQuestionStatistics(questionName: String, choiceNumber: Int, result: Int) = mainRepository.setQuestionStatistics(questionName, choiceNumber, result)
+
+    fun getQuestionStatistics(questionName: String, choiceNumber: Int) = mainRepository.getQuestionStatistics(questionName, choiceNumber)
+
     fun getQuestion() = try {
         mainRepository.getQuestion()
             .addOnSuccessListener {

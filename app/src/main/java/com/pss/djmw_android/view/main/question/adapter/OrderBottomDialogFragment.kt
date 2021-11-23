@@ -1,6 +1,7 @@
 package com.pss.djmw_android.view.main.question.adapter
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,14 +36,54 @@ class OrderBottomDialogFragment(val itemClick: (Int) -> Unit) :
     }
 
     fun onClickEvent(view: View) {
+        var num = 0
         when (view.id) {
-            binding.question1.id -> itemClick(0)
-            binding.question2.id -> itemClick(1)
-            binding.question3.id -> itemClick(2)
-            binding.question4.id -> itemClick(3)
-            binding.question5.id -> itemClick(4)
+            binding.question1.id -> {
+                num = 0
+                itemClick(0)
+            }
+            binding.question2.id -> {
+                num = 1
+                itemClick(1)
+            }
+            binding.question3.id -> {
+                num = 2
+                itemClick(2)
+            }
+            binding.question4.id -> {
+                num = 3
+                itemClick(3)
+            }
+            binding.question5.id -> {
+                num = 4
+                itemClick(4)
+            }
+
         }
-        dialog?.dismiss()
+        val holder = viewModel.questionItemPosition
+        Log.d("TAG","가져온 값1 : $num")
+        viewModel.getQuestionStatistics(viewModel.questionList[holder].question, num)
+            .addOnSuccessListener {
+                Log.d("TAG","가져온 값2 : ${it.value}, $num")
+                val plusResult = it.value.toString().toInt() + 1
+                viewModel.setQuestionStatistics(
+                    viewModel.questionList[holder].question,
+                    num,
+                    plusResult
+                ).addOnSuccessListener {
+                    dialog?.dismiss()
+                }
+                    .addOnFailureListener {
+                        error()
+                    }
+            }
+            .addOnFailureListener {
+                error()
+            }
+    }
+
+    private fun error(){
+        Toast.makeText(requireContext(), "예기치 않은 오류가 발생했습니다", Toast.LENGTH_SHORT).show()
     }
 
     override fun onResume() {
