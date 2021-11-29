@@ -10,6 +10,7 @@ import com.pss.djmw_android.repository.MainRepository
 import com.pss.djmw_android.widget.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.io.EOFException
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,6 +19,9 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
     val eventGetQuestion: LiveData<Boolean> get() = _eventGetQuestion
     private val _eventGetQuestion = SingleLiveEvent<Boolean>()
+
+    val userInfoSave: LiveData<Boolean> get() = _userInfoSave
+    private val _userInfoSave = SingleLiveEvent<Boolean>()
 
     //가져온 질문 값
     var questionList = arrayListOf<Question>()
@@ -29,6 +33,12 @@ class MainViewModel @Inject constructor(
     fun setQuestionStatistics(questionName: String, choiceNumber: Int, result: Int) = mainRepository.setQuestionStatistics(questionName, choiceNumber, result)
 
     fun getQuestionStatistics(questionName: String, choiceNumber: Int) = mainRepository.getQuestionStatistics(questionName, choiceNumber)
+
+    fun getUserInfo(userUid : String) = try{
+        mainRepository.getUserInfo(userUid)
+    }catch (e : Exception){
+
+    }
 
     fun getQuestion() = try {
         mainRepository.getQuestion()

@@ -27,6 +27,9 @@ class MainRepository @Inject constructor(
         }
     }
 
+    //user 정보 가져오기
+    fun getUserInfo(userUid : String) = firestore.collection("userInfo").document(userUid).get()
+
     //firebase rtdb의 통계 값에 +1하기
     fun setQuestionStatistics(questionName: String, choiceNumber: Int, result: Int): Task<Void> {
         return when (choiceNumber) {
