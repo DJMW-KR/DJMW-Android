@@ -6,16 +6,199 @@
 
     </data>
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.main.ProfileFragment">
+        android:background="#FAFAFA"
+        >
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
+
+
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="profile" />
+            android:layout_alignParentTop="true">
 
-    </FrameLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/noto_sans_kr_bold"
+                    android:gravity="center_horizontal"
+                    android:includeFontPadding="false"
+                    android:text="박상선"
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/noto_sans_kr_medium"
+                    android:gravity="center_horizontal"
+                    android:includeFontPadding="false"
+                    android:text="지금 바로 답변해 보세요"
+                    android:textColor="#595959"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:id="@+id/score"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/mypage_big_box"
+                    android:orientation="horizontal"
+                    android:padding="20dp">
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/apply"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_sans_kr_medium"
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:text="0"
+                            android:textColor="@color/white"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_sans_kr_medium"
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:text="랭킹 등수"
+
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/yes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:fontFamily="@font/noto_sans_kr_medium"
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:text="0"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_sans_kr_medium"
+
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:text="참여한 문제"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/no"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_sans_kr_medium"
+
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:text="0"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_sans_kr_medium"
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+
+                            android:text="정답 문제"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/profile_btn"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/noto_sans_kr_medium"
+                    android:gravity="left|center_vertical"
+                    android:includeFontPadding="false"
+                    android:paddingStart="30dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:text="앱 가이드 확인하기"
+                    android:textSize="15sp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/profile_btn_line"
+                    android:background="@drawable/profile_btn"
+                    android:textColor="@color/black"
+
+                    android:fontFamily="@font/noto_sans_kr_medium"
+                    android:gravity="left|center_vertical"
+                    android:includeFontPadding="false"
+                    android:paddingStart="30dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:text="문의하기"
+                    android:textSize="15sp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/profile_btn_line"
+                    android:background="@drawable/profile_btn"
+                    android:textColor="@color/black"
+
+                    android:fontFamily="@font/noto_sans_kr_medium"
+                    android:gravity="left|center_vertical"
+                    android:includeFontPadding="false"
+                    android:paddingStart="30dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:text="오픈소스 및 라이브러리"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </RelativeLayout>
 </layout>
