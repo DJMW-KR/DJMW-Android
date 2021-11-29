@@ -23,6 +23,10 @@ class MainViewModel @Inject constructor(
     val userInfoSave: LiveData<Boolean> get() = _userInfoSave
     private val _userInfoSave = SingleLiveEvent<Boolean>()
 
+    //0 = 사용자 정보 가져오기 오류, 1 = 퀴즈 가져오기 오류
+    val eventError: LiveData<Int> get() = _eventError
+    private val _eventError = SingleLiveEvent<Int>()
+
     //가져온 질문 값
     var questionList = arrayListOf<Question>()
 
@@ -30,13 +34,21 @@ class MainViewModel @Inject constructor(
     var questionItemPosition = 0
 
 
-    fun setQuestionStatistics(questionName: String, choiceNumber: Int, result: Int) = mainRepository.setQuestionStatistics(questionName, choiceNumber, result)
+    fun setQuestionStatistics(questionName: String, choiceNumber: Int, result: Int) =
+        mainRepository.setQuestionStatistics(questionName, choiceNumber, result)
 
-    fun getQuestionStatistics(questionName: String, choiceNumber: Int) = mainRepository.getQuestionStatistics(questionName, choiceNumber)
+    fun getQuestionStatistics(questionName: String, choiceNumber: Int) =
+        mainRepository.getQuestionStatistics(questionName, choiceNumber)
 
-    fun getUserInfo(userUid : String) = try{
+    fun getUserInfo(userUid: String) = try {
         mainRepository.getUserInfo(userUid)
-    }catch (e : Exception){
+            .addOnSuccessListener {
+
+            }
+            .addOnFailureListener {
+                _eventError.postValue(0)
+            }
+    } catch (e: Exception) {
 
     }
 
@@ -44,9 +56,9 @@ class MainViewModel @Inject constructor(
         mainRepository.getQuestion()
             .addOnSuccessListener {
                 viewModelScope.launch {
-                    for (item in it.documents){
+                    for (item in it.documents) {
                         var question = item.toObject(Question::class.java)
-                        Log.d("TAG","MainViewModel getQuestion 메소드 안 : $question")
+                        Log.d("TAG", "MainViewModel getQuestion 메소드 안 : $question")
                         questionList.add(question!!)
                     }
                 }
@@ -63,9 +75,9 @@ class MainViewModel @Inject constructor(
                    }*/
             }
             .addOnFailureListener {
-
+                _eventError.postValue(1)
             }
-    }catch (e:Exception){
-        Log.e("TAG","getQuestion 메서드 오류 : $e")
+    } catch (e: Exception) {
+        Log.e("TAG", "getQuestion 메서드 오류 : $e")
     }
 }

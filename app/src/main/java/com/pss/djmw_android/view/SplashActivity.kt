@@ -124,5 +124,12 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             startActivity(intent)
             finish()
         })
+
+        mainViewModel.eventError.observe(this,{
+            when(it){
+                0 -> shortShowToast("사용자 정보를 가져오는데 오류가 발생했습니다")
+                1 -> shortShowToast("퀴즈를 불러오는데 오류가 발생해습니다")
+            }
+        })
     }
 }
