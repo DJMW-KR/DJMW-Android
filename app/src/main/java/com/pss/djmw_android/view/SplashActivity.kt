@@ -12,6 +12,7 @@ import com.kakao.sdk.common.model.KakaoSdkError
 import com.kakao.sdk.user.UserApiClient
 import com.pss.djmw_android.R
 import com.pss.djmw_android.base.BaseActivity
+import com.pss.djmw_android.data.model.UserInfo
 import com.pss.djmw_android.databinding.ActivitySplashBinding
 import com.pss.djmw_android.view.main.MainActivity
 import com.pss.djmw_android.view.signin.SignInActivity
@@ -69,8 +70,9 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
                         Log.d("TAG", "datastore 값 :  ${splashViewModel.readDataStore()}")
 
                         if (splashViewModel.readDataStore() == "YES") {
-                            //fireStore에서 질문 받아오기
-                            mainViewModel.getQuestion()
+
+                            // TODO: 2021-11-29 kakao id저장 후 그 아이디 가져오는 코드 쓰기
+                            //mainViewModel.getUserInfo()
                         } else startSignIn()
                     }
                 }
@@ -84,8 +86,9 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
     private fun checkPcLogin() {
         CoroutineScope(Dispatchers.Main).launch {
             Log.d("TAG", "datastore 값 :  ${splashViewModel.readDataStore()}")
-            //fireStore에서 질문 받아오기
-            mainViewModel.getQuestion()
+
+            //fireStore에서 사용자 정보 받아오기
+            getUserInfo("1000000000")
         }
     }
 
@@ -105,6 +108,8 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         }
     }
 
+    private fun getUserInfo(userUid: String) = mainViewModel.getUserInfo(userUid)
+
     private fun setWindowFlag(bits: Int, on: Boolean) {
         val win = window
         val winParams = win.attributes
@@ -121,12 +126,26 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             val array = mainViewModel.questionList
             val intent = Intent(this, MainActivity::class.java)
             intent.putParcelableArrayListExtra("questionList", array)
+            intent.putExtra(
+                "userInfo",
+                UserInfo(
+                    userName = mainViewModel.eventGetUserInfo.value!!.userName,
+                    userId = mainViewModel.eventGetUserInfo.value!!.userId,
+                    participationQuestion = mainViewModel.eventGetUserInfo.value!!.participationQuestion,
+                    answerQuestion = mainViewModel.eventGetUserInfo.value!!.answerQuestion
+                )
+            )
             startActivity(intent)
             finish()
         })
 
-        mainViewModel.eventError.observe(this,{
-            when(it){
+        mainViewModel.eventGetUserInfo.observe(this, {
+            //fireStore에서 질문 받아오기
+            mainViewModel.getQuestion()
+        })
+
+        mainViewModel.eventError.observe(this, {
+            when (it) {
                 0 -> shortShowToast("사용자 정보를 가져오는데 오류가 발생했습니다")
                 1 -> shortShowToast("퀴즈를 불러오는데 오류가 발생해습니다")
             }

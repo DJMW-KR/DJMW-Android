@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.firestore.QuerySnapshot
 import com.pss.djmw_android.data.model.Question
+import com.pss.djmw_android.data.model.UserInfo
 import com.pss.djmw_android.repository.MainRepository
 import com.pss.djmw_android.widget.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,8 +21,8 @@ class MainViewModel @Inject constructor(
     val eventGetQuestion: LiveData<Boolean> get() = _eventGetQuestion
     private val _eventGetQuestion = SingleLiveEvent<Boolean>()
 
-    val userInfoSave: LiveData<Boolean> get() = _userInfoSave
-    private val _userInfoSave = SingleLiveEvent<Boolean>()
+    val eventGetUserInfo: LiveData<UserInfo> get() = _eventGetUserInfo
+    private val _eventGetUserInfo = SingleLiveEvent<UserInfo>()
 
     //0 = 사용자 정보 가져오기 오류, 1 = 퀴즈 가져오기 오류
     val eventError: LiveData<Int> get() = _eventError
@@ -34,6 +35,8 @@ class MainViewModel @Inject constructor(
     var questionItemPosition = 0
 
 
+    fun setEventGetUserInfo(content : UserInfo) = _eventGetUserInfo.postValue(content)
+
     fun setQuestionStatistics(questionName: String, choiceNumber: Int, result: Int) =
         mainRepository.setQuestionStatistics(questionName, choiceNumber, result)
 
@@ -43,7 +46,8 @@ class MainViewModel @Inject constructor(
     fun getUserInfo(userUid: String) = try {
         mainRepository.getUserInfo(userUid)
             .addOnSuccessListener {
-
+                val userInfo = it.toObject(UserInfo::class.java)
+                _eventGetUserInfo.postValue(userInfo)
             }
             .addOnFailureListener {
                 _eventError.postValue(0)

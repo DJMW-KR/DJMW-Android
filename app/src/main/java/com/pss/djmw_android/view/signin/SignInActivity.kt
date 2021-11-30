@@ -67,7 +67,9 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
                                 viewModel.setUserInfoFirebase(
                                     UserInfo(
                                         userId = "${user.id}",
-                                        userName = "${user.kakaoAccount?.profile?.nickname}"
+                                        userName = "${user.kakaoAccount?.profile?.nickname}",
+                                        answerQuestion = "0",
+                                        participationQuestion = "0"
                                     )
                                 )
                             }
