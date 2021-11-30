@@ -27,6 +27,7 @@
 
 
                 <TextView
+                    android:id="@+id/user_nice_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
@@ -38,6 +39,7 @@
                     android:textSize="30sp" />
 
                 <TextView
+                    android:id="@+id/title_txt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -67,7 +69,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/apply"
+                            android:id="@+id/ranking_score"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/noto_sans_kr_medium"
@@ -96,7 +98,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/yes"
+                            android:id="@+id/participation_question_score"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
 
@@ -126,7 +128,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/no"
+                            android:id="@+id/answer_question_score"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/noto_sans_kr_medium"
