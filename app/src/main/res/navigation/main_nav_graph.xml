@@ -17,7 +17,7 @@
         android:label="QuestionFragment" />
     <fragment
         android:id="@+id/postFragment"
-        android:name="com.pss.djmw_android.view.main.PostFragment"
+        android:name="com.pss.djmw_android.view.main.post.PostFragment"
         tools:layout="@layout/fragment_post"
         android:label="PostFragment" />
     <fragment
