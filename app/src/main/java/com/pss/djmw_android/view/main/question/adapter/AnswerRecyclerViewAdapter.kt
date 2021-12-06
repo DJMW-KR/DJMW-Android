@@ -61,7 +61,7 @@ class AnswerRecyclerViewAdapter(
         return viewModel.questionList.size
     }
 
-    class AnswerRecyclerViewHolder(val binding: QuestionRecyclerViewItemBinding) :
+    inner class AnswerRecyclerViewHolder(val binding: QuestionRecyclerViewItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: Question) {
             binding.data = data
