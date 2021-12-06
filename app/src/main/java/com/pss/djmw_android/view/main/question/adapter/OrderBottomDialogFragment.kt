@@ -61,29 +61,48 @@ class OrderBottomDialogFragment(val itemClick: (Int) -> Unit) :
 
         }
         val holder = viewModel.questionItemPosition
-        Log.d("TAG", "가져온 값1 : $num")
-        viewModel.getQuestionStatistics(viewModel.questionList[holder].question, num)
-            .addOnSuccessListener {
-                Log.d("TAG", "가져온 값2 : ${it.value}, $num")
-                val plusResult = it.value.toString().toInt() + 1
-                viewModel.setQuestionStatistics(
-                    viewModel.questionList[holder].question,
-                    num,
-                    plusResult
-                ).addOnSuccessListener {
-                    dialog?.dismiss()
-                }
-                    .addOnFailureListener {
+        try {
+            viewModel.getQuestionStatistics(viewModel.questionList[holder].question, num)
+                .addOnSuccessListener {
+
+                    //가져온 value 가 null 인지 체크 => 질문이 rtdb 와 fireStore 에 잘 들어있는지 확인
+                    if (it.value != null) {
+
+                        //불러온 참여한 사람에 +1해서 다시 저장
+                        val plusResult = it.value.toString().toInt() + 1
+                        viewModel.setQuestionStatistics(
+                            viewModel.questionList[holder].question,
+                            num,
+                            plusResult
+                        )
+                            .addOnSuccessListener {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "성공적으로 반영되었습니다!",
+                                    Toast.LENGTH_SHORT
+                                )
+                                    .show()
+                                dialog?.dismiss()
+                            }
+                            .addOnFailureListener {
+                                error()
+                            }
+
+                    } else {
                         error()
                     }
-            }
-            .addOnFailureListener {
-                error()
-            }
+                }
+                .addOnFailureListener {
+                    error()
+                }
+        } catch (e: Exception) {
+            error()
+        }
     }
 
     private fun error() {
         Toast.makeText(requireContext(), "예기치 않은 오류가 발생했습니다", Toast.LENGTH_SHORT).show()
+        dialog?.dismiss()
     }
 
     override fun onResume() {

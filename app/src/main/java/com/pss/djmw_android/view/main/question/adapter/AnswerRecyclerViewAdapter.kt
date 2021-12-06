@@ -39,12 +39,13 @@ class AnswerRecyclerViewAdapter(
         Log.d("TAG", "AnswerRecyclerViewAdapter안 questionList : ${viewModel.questionList}")
         holder.bind(viewModel.questionList[position])
 
+        //item 을 킬릭시 바텀시트 표시
         holder.binding.itemFrame.setOnClickListener {
             viewModel.questionItemPosition = position
             val orderBottomDialogFragment: OrderBottomDialogFragment = OrderBottomDialogFragment {
 
-                Toast.makeText(fragment.requireContext(), "성공적으로 반영되었습니다!", Toast.LENGTH_SHORT)
-                    .show()
+                /*Toast.makeText(fragment.requireContext(), "성공적으로 반영되었습니다!", Toast.LENGTH_SHORT)
+                    .show()*/
 
             }
             orderBottomDialogFragment.show(
