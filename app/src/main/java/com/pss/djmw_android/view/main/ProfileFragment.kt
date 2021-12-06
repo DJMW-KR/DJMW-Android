@@ -39,11 +39,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     }
 
     private fun userInfoCountAnimation(count: Int, txtView: TextView) {
-        val answerQuestionScoreAnimator = ValueAnimator.ofInt(0, count)
-        answerQuestionScoreAnimator.duration = 1500
-        answerQuestionScoreAnimator.addUpdateListener { animation ->
+        val animator = ValueAnimator.ofInt(0, count)
+        animator.duration = 1500
+        animator.addUpdateListener { animation ->
             txtView.text = animation.animatedValue.toString()
         }
-        answerQuestionScoreAnimator.start()
+        animator.start()
     }
 }
