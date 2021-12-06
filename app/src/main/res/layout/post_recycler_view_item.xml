@@ -1,39 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:padding="20dp"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="제목입니다"
-        android:fontFamily="@font/noto_sans_kr_bold"
-        android:textColor="@color/black"
-        android:textSize="22sp"
-        android:includeFontPadding="false"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="내용입니다"
-        android:layout_marginTop="5dp"
-        android:fontFamily="@font/noto_sans_kr_medium"
-        android:textColor="#555555"
-        android:textSize="18sp"
-        android:includeFontPadding="false"
-        />
+    <data>
 
-    <TextView
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="20XX.XX.XX"
-        android:layout_marginTop="5dp"
-        android:gravity="right"
-        android:fontFamily="@font/noto_sans_kr_medium"
-        android:textColor="@color/main_color"
-        android:textSize="15sp"
-        android:includeFontPadding="false"
-        />
-</LinearLayout>
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="제목입니다"
+            android:fontFamily="@font/noto_sans_kr_bold"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:includeFontPadding="false" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="내용입니다"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:textColor="#555555"
+            android:textSize="15sp"
+            android:includeFontPadding="false" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="20XX.XX.XX"
+            android:layout_marginTop="5dp"
+            android:gravity="right"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:textColor="@color/main_color"
+            android:textSize="15sp"
+            android:includeFontPadding="false" />
+    </LinearLayout>
+</layout>
