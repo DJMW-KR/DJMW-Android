@@ -1,15 +1,14 @@
 package com.pss.djmw_android.view.main
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import com.pss.djmw_android.R
 import com.pss.djmw_android.base.BaseFragment
 import com.pss.djmw_android.databinding.FragmentProfileBinding
 import com.pss.djmw_android.viewmodel.MainViewModel
+
+import android.animation.ValueAnimator
+
+import android.widget.TextView
+import com.pss.djmw_android.R
 
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_profile) {
@@ -23,11 +22,28 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     private fun initText() {
         binding.apply {
             viewModel.eventGetUserInfo.value?.apply {
-                answerQuestionScore.text = answerQuestion
+                //참여한 문제 개수 카운트
+                userInfoCountAnimation(
+                    participationQuestion.toString().toInt(),
+                    binding.participationQuestionScore
+                )
+
+                //정답 문제 개수 카운트
+                userInfoCountAnimation(
+                    answerQuestion.toString().toInt(),
+                    binding.answerQuestionScore
+                )
                 userNiceName.text = userName
-                //rankingScore.text =
-                participationQuestionScore.text = participationQuestion
             }
         }
+    }
+
+    private fun userInfoCountAnimation(count: Int, txtView: TextView) {
+        val answerQuestionScoreAnimator = ValueAnimator.ofInt(0, count)
+        answerQuestionScoreAnimator.duration = 1000
+        answerQuestionScoreAnimator.addUpdateListener { animation ->
+            txtView.text = animation.animatedValue.toString()
+        }
+        answerQuestionScoreAnimator.start()
     }
 }
