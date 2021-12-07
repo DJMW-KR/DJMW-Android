@@ -17,19 +17,3 @@ fun RecyclerView.showHorizontal(context: Context){
     this.layoutManager =
         LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 }
-
-fun TextView.gone(){
-    this.visibility = View.GONE
-}
-
-fun TextView.visible(){
-    this.visibility = View.VISIBLE
-}
-
-fun ImageView.gone(){
-    this.visibility = View.GONE
-}
-
-fun ImageView.visible(){
-    this.visibility = View.VISIBLE
-}
