@@ -36,6 +36,7 @@ class OrderBottomDialogFragment(val itemClick: (Int) -> Unit) :
     }
 
     fun onClickEvent(view: View) {
+        setEnabled()
         var num = 0
         when (view.id) {
             binding.question1.id -> {
@@ -122,5 +123,13 @@ class OrderBottomDialogFragment(val itemClick: (Int) -> Unit) :
         } catch (e: Exception) {
             Toast.makeText(requireContext(), "질문을 받아오는데 오류가 발생했습니다", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun setEnabled(){
+        binding.question1.isEnabled = false
+        binding.question2.isEnabled = false
+        binding.question3.isEnabled = false
+        binding.question4.isEnabled = false
+        binding.question5.isEnabled = false
     }
 }
