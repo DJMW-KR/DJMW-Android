@@ -22,17 +22,12 @@ class PostFragment : BaseFragment<FragmentPostBinding>(R.layout.fragment_post) {
     override fun init() {
         initRecyclerView()
         observeViewModel()
-        initGet()
     }
 
     private fun observeViewModel(){
         postViewModel.eventGetPostResponse.observe(this,{
             Log.d("로그","Post 가져온 값 : $it")
         })
-    }
-
-    private fun initGet(){
-        postViewModel.getPost()
     }
 
     private fun initRecyclerView() {
