@@ -101,4 +101,7 @@ dependencies {
 
     //lottie 애니메이션
     implementation 'com.airbnb.android:lottie:3.4.1'
+
+    //타자기처럼 한 글자씩 textview에 출력 애니메이션
+    implementation 'in.codeshuffle:typewriterview:1.1.0'
 }
