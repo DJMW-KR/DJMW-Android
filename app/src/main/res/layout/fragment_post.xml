@@ -52,18 +52,43 @@
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/loading_bar"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:layout_gravity="center_horizontal"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/loading" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/loading_bar"
+                android:layout_width="280dp"
+                android:layout_height="280dp"
+                android:layout_gravity="center_horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/loading" />
+
+            <TextView
+                android:id="@+id/loading_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:includeFontPadding="false"
+                android:text="고민을 귀담아듣는 중"
+                android:layout_marginBottom="20dp"
+                android:textColor="#EC818C"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/loading_bar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
