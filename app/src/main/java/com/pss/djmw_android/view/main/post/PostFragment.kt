@@ -13,6 +13,7 @@ import com.pss.djmw_android.databinding.FragmentPostBinding
 import com.pss.djmw_android.view.main.post.adapter.PostRecyclerViewAdapter
 import com.pss.djmw_android.view.main.question.adapter.AnswerRecyclerViewAdapter
 import com.pss.djmw_android.viewmodel.PostViewModel
+import com.pss.djmw_android.widget.extension.setVisibility
 import com.pss.djmw_android.widget.extension.showVertical
 
 class PostFragment : BaseFragment<FragmentPostBinding>(R.layout.fragment_post) {
@@ -36,8 +37,8 @@ class PostFragment : BaseFragment<FragmentPostBinding>(R.layout.fragment_post) {
     private fun observeViewModel() {
         postViewModel.eventGetPostResponse.observe(this, {
             Log.d("로그", "Post 가져온 값 : $it")
-            binding.loadingBar.visibility = View.GONE
-            binding.loadingTxt.visibility = View.GONE
+            binding.loadingBar.setVisibility(false)
+            binding.loadingTxt.setVisibility(false)
             binding.postRecyclerView.visibility = View.VISIBLE
         })
     }

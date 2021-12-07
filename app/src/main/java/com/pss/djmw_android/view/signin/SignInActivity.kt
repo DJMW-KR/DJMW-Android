@@ -21,6 +21,7 @@ import com.pss.djmw_android.viewmodel.SignInViewModel
 import com.kakao.sdk.user.model.User
 import com.pss.djmw_android.data.model.UserInfo
 import com.pss.djmw_android.view.main.MainActivity
+import com.pss.djmw_android.widget.extension.setVisibility
 import com.pss.djmw_android.widget.extension.startActivityWithFinish
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -37,7 +38,7 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
     }
 
     fun clickKakaoLoginBtn(view: View) {
-        binding.loading.visibility = View.VISIBLE
+        binding.loading.setVisibility(true)
         viewModel.clickKakaoLoginBtn()
     }
 
@@ -49,7 +50,7 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
                         when (error.message) {
                             "KakaoTalk not installed" -> shortShowToast("카카오톡이 다운로드 되어있지 않습니다")
                         }
-                        binding.loading.visibility = View.INVISIBLE
+                        binding.loading.setVisibility(false)
                         Log.e("TAG", "로그인 실패 ${error.message}")
                     } else if (oAuthToken != null) {
                         Log.i("TAG", "로그인 성공(토큰) : " + oAuthToken.accessToken)
@@ -80,7 +81,7 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
         })
 
         viewModel.eventSaveDataStoreSuccess.observe(this, { result ->
-            binding.loading.visibility = View.INVISIBLE
+            binding.loading.setVisibility(false)
             when (result) {
                 "YES" -> this.startActivityWithFinish(this, MainActivity::class.java)
                 "NO" -> longShowToast("회원가입에 실패했습니다, 다시 시도해 주세요")
