@@ -98,4 +98,7 @@ dependencies {
     implementation "com.kakao.sdk:v2-story:2.8.2" // 카카오스토리
     implementation "com.kakao.sdk:v2-link:2.8.2" // 메시지(카카오링크)
     implementation "com.kakao.sdk:v2-navi:2.8.2" // 카카오내비
+
+    //lottie 애니메이션
+    implementation 'com.airbnb.android:lottie:3.4.1'
 }
