@@ -32,6 +32,12 @@ class PostFragment : BaseFragment<FragmentPostBinding>(R.layout.fragment_post) {
             setWithMusic(false)
             animateText("고민을 귀담아듣는 중")
         }
+            binding.content.apply {
+                setDelay(1)
+                setWithMusic(false)
+                animateText("때로는 털어놓는 게 해결 방법입니다!")
+            }
+
     }
 
     private fun observeViewModel() {

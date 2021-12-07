@@ -7,6 +7,7 @@ import com.pss.djmw_android.databinding.FragmentQuestionBinding
 
 class QuestionFragment : BaseFragment<FragmentQuestionBinding>(R.layout.fragment_question) {
     override fun init() {
+        initTypeWriterTextAnim()
         initViewPager()
         initTabLayout()
     }
@@ -14,6 +15,14 @@ class QuestionFragment : BaseFragment<FragmentQuestionBinding>(R.layout.fragment
     private fun initViewPager(){
         val adapter = QuestionAdapter(childFragmentManager, lifecycle)
         binding.viewPager.adapter = adapter
+    }
+
+    private fun initTypeWriterTextAnim() {
+        binding.content.apply {
+            setDelay(1)
+            setWithMusic(false)
+            animateText("이성의 질문에 답변해 보세요!")
+        }
     }
 
     private fun initTabLayout(){
