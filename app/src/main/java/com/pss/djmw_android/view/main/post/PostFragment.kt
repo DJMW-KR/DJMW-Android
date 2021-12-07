@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import com.pss.djmw_android.R
 import com.pss.djmw_android.base.BaseFragment
 import com.pss.djmw_android.databinding.FragmentPostBinding
@@ -21,8 +22,9 @@ class PostFragment : BaseFragment<FragmentPostBinding>(R.layout.fragment_post) {
 
 
     override fun init() {
+        postViewModel.postList.clear()
         initTypeWriterTextAnim()
-        initRecyclerView()
+        initGet()
         observeViewModel()
     }
 
@@ -32,25 +34,30 @@ class PostFragment : BaseFragment<FragmentPostBinding>(R.layout.fragment_post) {
             setWithMusic(false)
             animateText("고민을 귀담아듣는 중")
         }
-            binding.content.apply {
-                setDelay(1)
-                setWithMusic(false)
-                animateText("때로는 털어놓는 게 해결 방법입니다!")
-            }
+        binding.content.apply {
+            setDelay(1)
+            setWithMusic(false)
+            animateText("때로는 털어놓는 게 해결 방법입니다!")
+        }
 
     }
 
+    private fun initGet() {
+        postViewModel.getPost()
+    }
+
     private fun observeViewModel() {
-        postViewModel.eventGetPostResponse.observe(this, {
+        postViewModel.eventGetPostSuccess.observe(this, {
             Log.d("로그", "Post 가져온 값 : $it")
             binding.loadingBar.setVisibility(false)
             binding.loadingTxt.setVisibility(false)
             binding.postRecyclerView.visibility = View.VISIBLE
+            initRecyclerView()
         })
     }
 
     private fun initRecyclerView() {
         binding.postRecyclerView.showVertical(requireContext())
-        binding.postRecyclerView.adapter = PostRecyclerViewAdapter()
+        binding.postRecyclerView.adapter = PostRecyclerViewAdapter(postViewModel)
     }
 }

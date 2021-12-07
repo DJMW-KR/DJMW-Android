@@ -23,7 +23,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun init() {
         initGetValues()
         initBottomNavBar()
-        initGet()
+        //initGet()
     }
 
     private fun initGetValues(){
@@ -32,9 +32,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     }
 
     //Post글을 다 받아오지 않아도 앱 시작
-    private fun initGet(){
+  /*  private fun initGet(){
         postViewModel.getPost()
-    }
+    }*/
 
     private fun initBottomNavBar(){
         val navController = supportFragmentManager.findFragmentById(R.id.nav_host)?.findNavController()

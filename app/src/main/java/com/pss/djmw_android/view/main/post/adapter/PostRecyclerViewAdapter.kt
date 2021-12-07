@@ -31,11 +31,11 @@ class PostRecyclerViewAdapter(
     }
 
     override fun onBindViewHolder(holder: PostRecyclerViewHolder, position: Int) {
-        viewModel.eventGetPostResponse.value?.get(position)?.let { holder.bind(it) }
+        holder.bind(viewModel.postList[position])
     }
 
     override fun getItemCount(): Int {
-        return viewModel.eventGetPostResponse.value!!.size
+        return viewModel.postList.size
     }
 
     inner class PostRecyclerViewHolder(val binding: PostRecyclerViewItemBinding) :

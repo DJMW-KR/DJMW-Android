@@ -2,7 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-
+        <variable
+            name="data"
+            type="com.pss.djmw_android.data.model.GetPost" />
     </data>
 
     <LinearLayout
@@ -16,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="제목입니다"
+            set_title="@{data.title}"
             android:fontFamily="@font/noto_sans_kr_bold"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -26,6 +29,7 @@
             android:layout_height="wrap_content"
             android:text="내용입니다"
             android:layout_marginTop="5dp"
+            set_content="@{data.content}"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:textColor="#555555"
             android:textSize="15sp"
@@ -35,6 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="20XX.XX.XX"
+            set_date="@{data.date}"
             android:layout_marginTop="5dp"
             android:gravity="right"
             android:fontFamily="@font/noto_sans_kr_medium"
