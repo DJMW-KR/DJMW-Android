@@ -20,15 +20,25 @@ class PostFragment : BaseFragment<FragmentPostBinding>(R.layout.fragment_post) {
 
 
     override fun init() {
+        initTypeWriterTextAnim()
         initRecyclerView()
         observeViewModel()
     }
 
-    private fun observeViewModel(){
-        postViewModel.eventGetPostResponse.observe(this,{
-            Log.d("로그","Post 가져온 값 : $it")
-   /*         binding.loadingBar.visibility = View.GONE
-            binding.postRecyclerView.visibility = View.VISIBLE*/
+    private fun initTypeWriterTextAnim() {
+        binding.loadingTxt.apply {
+            setDelay(1)
+            setWithMusic(false)
+            animateText("고민을 귀담아듣는 중")
+        }
+    }
+
+    private fun observeViewModel() {
+        postViewModel.eventGetPostResponse.observe(this, {
+            Log.d("로그", "Post 가져온 값 : $it")
+            binding.loadingBar.visibility = View.GONE
+            binding.loadingTxt.visibility = View.GONE
+            binding.postRecyclerView.visibility = View.VISIBLE
         })
     }
 
