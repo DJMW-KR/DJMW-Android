@@ -27,6 +27,8 @@ class PostFragment : BaseFragment<FragmentPostBinding>(R.layout.fragment_post) {
     private fun observeViewModel(){
         postViewModel.eventGetPostResponse.observe(this,{
             Log.d("로그","Post 가져온 값 : $it")
+            binding.loadingBar.visibility = View.GONE
+            binding.postRecyclerView.visibility = View.VISIBLE
         })
     }
 
