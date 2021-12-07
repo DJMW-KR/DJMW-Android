@@ -4,19 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 
-
-fun TextView.setGone(){
-    this.visibility = View.GONE
-}
-
-fun TextView.setVisible(){
-    this.visibility = View.VISIBLE
-}
-
-fun ImageView.setGone(){
-    this.visibility = View.GONE
-}
-
-fun ImageView.setVisible(){
-    this.visibility = View.VISIBLE
+//true = visible , false = gone
+fun View.setVisibility(v: Boolean) {
+    this.visibility = if (v) View.VISIBLE else View.GONE
 }
