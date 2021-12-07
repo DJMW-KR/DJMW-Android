@@ -33,7 +33,7 @@
             android:layout_marginTop="2dp"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:includeFontPadding="false"
-            android:text="답을 찾을지도 몰라요!"
+            android:text="때로는 털어놓는 게 해결 방법입니다!"
             android:textColor="#939393"
             android:textSize="17sp"
             app:layout_constraintStart_toStartOf="@+id/textView3"
