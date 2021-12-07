@@ -9,5 +9,5 @@ class PostRepository @Inject constructor(
     private val firebaseDatabase: FirebaseDatabase,
     private val firestore: FirebaseFirestore
 ) {
-    fun getPost() = firebaseDatabase.reference.child("post").get()
+    fun getPost() = firestore.collection("post").get()
 }
