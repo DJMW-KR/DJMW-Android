@@ -51,6 +51,12 @@ class PostFragment : BaseFragment<FragmentPostBinding>(R.layout.fragment_post) {
         postViewModel.eventGetPostSuccess.observe(this, {
             initPostView()
         })
+
+        postViewModel.eventError.observe(this,{
+            when(it){
+                0 -> shortShowToast("게시물을 가져오는데 오류가 발생했습니다")
+            }
+        })
     }
 
     private fun initPostView(){
