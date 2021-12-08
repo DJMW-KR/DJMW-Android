@@ -16,6 +16,10 @@ class PostViewModel @Inject constructor(
     val eventGetPostSuccess: LiveData<Any> get() = _eventGetPostSuccess
     private val _eventGetPostSuccess = SingleLiveEvent<Any>()
 
+    val eventSetPostSuccess: LiveData<Any> get() = _eventSetPostSuccess
+    private val _eventSetPostSuccess = SingleLiveEvent<Any>()
+
+    //0 = getPostError, 1 = SetPostError
     val eventError: LiveData<Int> get() = _eventError
     private val _eventError = SingleLiveEvent<Int>()
 
@@ -38,4 +42,10 @@ class PostViewModel @Inject constructor(
         }
 
     fun setPost(post : Post) = postRepository.setPost(post)
+        .addOnSuccessListener {
+            _eventSetPostSuccess.call()
+        }
+        .addOnFailureListener {
+            _eventError.postValue(1)
+        }
 }

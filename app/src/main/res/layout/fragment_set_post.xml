@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="fragment"
             type="com.pss.djmw_android.view.main.post.SetPostFragment" />
@@ -16,11 +17,11 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:padding="10dp"
             android:layout_width="@dimen/back_btn_size"
             android:layout_height="@dimen/back_btn_size"
             android:layout_margin="10dp"
             android:onClick="@{fragment::clickBackBtn}"
+            android:padding="10dp"
             android:src="@drawable/back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -39,68 +40,104 @@
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="@+id/imageView" />
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/appCompatButton"
+            app:layout_constraintBottom_toTopOf="@+id/upload_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/noto_sans_kr_bold"
-                android:includeFontPadding="false"
-                android:text="제목을 입력해 주세요"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
 
-            <EditText
+            <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/noto_sans_kr_medium"
-                android:hint="저의 고민은요.."
-                android:includeFontPadding="false" />
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                >
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/noto_sans_kr_bold"
-                android:includeFontPadding="false"
-                android:text="내용을 입력해 주세요"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/noto_sans_kr_bold"
+                    android:includeFontPadding="false"
+                    android:text="제목을 입력해 주세요"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/noto_sans_kr_medium"
-                android:hint="자세한 내용은.."
-                android:includeFontPadding="false" />
-        </LinearLayout>
+                <EditText
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/edit_text_frame"
+                    android:fontFamily="@font/noto_sans_kr_medium"
+                    android:hint="저의 고민은요.."
+                    android:includeFontPadding="false"
+                    android:maxLength="19"
+                    android:maxLines="1"
+                    android:padding="10dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/noto_sans_kr_bold"
+                    android:includeFontPadding="false"
+                    android:text="내용을 입력해 주세요"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/edit_text_frame"
+                    android:fontFamily="@font/noto_sans_kr_medium"
+                    android:hint="자세한 내용은.."
+                    android:includeFontPadding="false"
+                    android:maxLength="200"
+                    android:padding="10dp" />
+            </LinearLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/appCompatButton"
+            android:id="@+id/upload_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/main_color"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:includeFontPadding="false"
-            android:text="남기기"
+            android:onClick="@{fragment::clickUploadBtn}"
             android:padding="20dp"
+            android:text="남기기"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loading_bar"
+            android:layout_width="280dp"
+            android:layout_height="280dp"
+            android:layout_gravity="center_horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
