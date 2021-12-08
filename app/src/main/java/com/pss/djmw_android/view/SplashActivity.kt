@@ -29,7 +29,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
     private val splashViewModel by viewModels<SplashViewModel>()
     private val mainViewModel by viewModels<MainViewModel>()
 
-    // TODO: 2021-11-15 앱을 업데이트 할때 마다 버전 업 해주기기
+    // TODO: 2021-11-15 앱을 업데이트 할때 마다 버전 업 해주기기 (0.0.0 은 점검중이라는 의미입니다)
     private val appVersion = "1.0.0"
 
     override fun init() {
@@ -42,7 +42,8 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
 
                     //컴퓨터 에뮬레이터로 테스트 할때
                     checkPcLogin()
-                } else longShowToast("앱이 최신버전이 아닙니다, 앱을 업데이트 하세요!")
+                } else if (it.value == "0.0.0") longShowToast("앱이 점검중 입니다, 잠시만 기다려 주세요!")
+                else longShowToast("앱이 최신버전이 아닙니다, 앱을 업데이트 하세요!")
             }
             .addOnFailureListener {
                 shortShowToast("인터넷 연결을 확인하세요")

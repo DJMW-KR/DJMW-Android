@@ -39,7 +39,6 @@ class PostFragment : BaseFragment<FragmentPostBinding>(R.layout.fragment_post) {
             setWithMusic(false)
             animateText("때로는 털어놓는 게 해결 방법입니다!")
         }
-
     }
 
     private fun initGet() {

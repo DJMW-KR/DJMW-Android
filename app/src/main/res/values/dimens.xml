@@ -5,5 +5,6 @@
     <dimen name="kakao_logo_size">20dp</dimen>
     <dimen name="question_bottom_sheet_size">17sp</dimen>
     <dimen name="profile_btn_line">2dp</dimen>
+    <dimen name="post_floating_btn">60dp</dimen>
 
 </resources>

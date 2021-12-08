@@ -89,7 +89,20 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:textStyle="bold" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="@dimen/post_floating_btn"
+            android:layout_height="@dimen/post_floating_btn"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_margin="15dp"
+            android:backgroundTint="@color/main_color"
+            android:contentDescription="고민 적어보기"
+            android:src="@drawable/plus"
+            app:fabCustomSize="60dp"
+            app:borderWidth="0dp"
+            app:tint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
