@@ -26,7 +26,7 @@ class MainViewModel @Inject constructor(
     val eventGetUserInfo: LiveData<UserInfo> get() = _eventGetUserInfo
     private val _eventGetUserInfo = SingleLiveEvent<UserInfo>()
 
-    //0 = 사용자 정보 가져오기 오류, 1 = 퀴즈 가져오기 오류
+    //0 = 사용자 정보 가져오기 오류, 1 = 퀴즈 가져오기 오류, 2 = 사용자 랭킹 정보 가져오기 오류
     val eventError: LiveData<Int> get() = _eventError
     private val _eventError = SingleLiveEvent<Int>()
 
@@ -34,8 +34,15 @@ class MainViewModel @Inject constructor(
     val eventActionView: LiveData<Boolean> get() = _eventActionView
     private val _eventActionView = SingleLiveEvent<Boolean>()
 
+    //사용자 랭킹 정보
+    val eventUserRankingInfo: LiveData<Int> get() = _eventUserRankingInfo
+    private val _eventUserRankingInfo = SingleLiveEvent<Int>()
+
     //가져온 질문 값
     var questionList = arrayListOf<Question>()
+
+    //가져온 사용자 정보 score값 높은 순서대로
+    var userRankingList = arrayListOf<UserInfo>()
 
     //질문 클릭시 몇번째 아이템인지 확인 값
     var questionItemPosition = 0
@@ -54,8 +61,7 @@ class MainViewModel @Inject constructor(
     fun getUserInfo(userUid: String) = try {
         mainRepository.getUserInfo(userUid)
             .addOnSuccessListener {
-                val userInfo = it.toObject(UserInfo::class.java)
-                _eventGetUserInfo.postValue(userInfo)
+                _eventGetUserInfo.postValue(it.toObject(UserInfo::class.java)!!)
             }
             .addOnFailureListener {
                 _eventError.postValue(0)
@@ -64,14 +70,29 @@ class MainViewModel @Inject constructor(
 
     }
 
+    fun userRankingInfo() = mainRepository.userRankingInfo()
+        .addOnSuccessListener {
+            for (item in it.documents){
+                userRankingList.add(item.toObject(UserInfo::class.java)!!)
+            }
+            for (item in 0..userRankingList.size){
+                //사용자 id
+                if (_eventGetUserInfo.value?.userId == userRankingList[item].userId){
+                    _eventUserRankingInfo.postValue(item)
+                    break
+                }
+            }
+        }
+        .addOnFailureListener {
+            _eventError.postValue(2)
+        }
+
     fun getQuestion() = try {
         mainRepository.getQuestion()
             .addOnSuccessListener {
                 viewModelScope.launch {
                     for (item in it.documents) {
-                        var question = item.toObject(Question::class.java)
-                        Log.d("TAG", "MainViewModel getQuestion 메소드 안 : $question")
-                        questionList.add(question!!)
+                        questionList.add(item.toObject(Question::class.java)!!)
                     }
                 }
                 _eventGetQuestion.postValue(true)

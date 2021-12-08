@@ -5,6 +5,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.pss.djmw_android.data.model.Question
 import com.pss.djmw_android.data.model.UserInfo
 import javax.inject.Inject
@@ -41,6 +42,8 @@ class MainRepository @Inject constructor(
             else -> setChoiceQuestionStatistics(questionName, "statistics_one", result)
         }
     }
+
+    fun userRankingInfo() = firestore.collection("userInfo").orderBy("score", Query.Direction.DESCENDING).get()
 
     private fun setChoiceQuestionStatistics(questionName: String, choice: String, result: Int) =
         firebaseDatabase.reference.child("question").child(questionName).child(choice)
