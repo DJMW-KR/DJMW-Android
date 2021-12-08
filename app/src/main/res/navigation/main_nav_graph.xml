@@ -19,11 +19,24 @@
         android:id="@+id/postFragment"
         android:name="com.pss.djmw_android.view.main.post.PostFragment"
         tools:layout="@layout/fragment_post"
-        android:label="PostFragment" />
+        android:label="PostFragment" >
+        <action
+            android:id="@+id/action_postFragment_to_setPostFragment"
+            app:destination="@id/setPostFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.pss.djmw_android.view.main.ProfileFragment"
         tools:layout="@layout/fragment_profile"
         android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/setPostFragment"
+        tools:layout="@layout/fragment_set_post"
+        android:name="com.pss.djmw_android.view.main.post.SetPostFragment"
+        android:label="SetPostFragment" >
+        <action
+            android:id="@+id/action_setPostFragment_to_postFragment"
+            app:destination="@id/postFragment" />
+    </fragment>
 
 </navigation>

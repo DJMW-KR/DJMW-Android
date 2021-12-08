@@ -18,15 +18,21 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val mainRepository: MainRepository
 ) : ViewModel() {
+    //가져온 질문 정보
     val eventGetQuestion: LiveData<Boolean> get() = _eventGetQuestion
     private val _eventGetQuestion = SingleLiveEvent<Boolean>()
 
+    //가져온 유저 정보
     val eventGetUserInfo: LiveData<UserInfo> get() = _eventGetUserInfo
     private val _eventGetUserInfo = SingleLiveEvent<UserInfo>()
 
     //0 = 사용자 정보 가져오기 오류, 1 = 퀴즈 가져오기 오류
     val eventError: LiveData<Int> get() = _eventError
     private val _eventError = SingleLiveEvent<Int>()
+
+    //다른화면으로 넘어갈때 bottom nav bar 숨기기 or 보이기 (true = 보이기, false = 숨기기)
+    val eventActionView: LiveData<Boolean> get() = _eventActionView
+    private val _eventActionView = SingleLiveEvent<Boolean>()
 
     //가져온 질문 값
     var questionList = arrayListOf<Question>()
@@ -36,6 +42,8 @@ class MainViewModel @Inject constructor(
 
 
     fun setEventGetUserInfo(content : UserInfo) = _eventGetUserInfo.postValue(content)
+
+    fun setActionView(content : Boolean) = _eventActionView.postValue(content)
 
     fun setQuestionStatistics(questionName: String, choiceNumber: Int, result: Int) =
         mainRepository.setQuestionStatistics(questionName, choiceNumber, result)

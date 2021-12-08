@@ -8,20 +8,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.pss.djmw_android.R
 import com.pss.djmw_android.base.BaseFragment
 import com.pss.djmw_android.databinding.FragmentPostBinding
 import com.pss.djmw_android.view.main.post.adapter.PostRecyclerViewAdapter
 import com.pss.djmw_android.view.main.question.adapter.AnswerRecyclerViewAdapter
+import com.pss.djmw_android.viewmodel.MainViewModel
 import com.pss.djmw_android.viewmodel.PostViewModel
 import com.pss.djmw_android.widget.extension.setVisibility
 import com.pss.djmw_android.widget.extension.showVertical
 
 class PostFragment : BaseFragment<FragmentPostBinding>(R.layout.fragment_post) {
     private val postViewModel by activityViewModels<PostViewModel>()
+    private val mainViewModel by activityViewModels<MainViewModel>()
 
 
     override fun init() {
+        binding.fragment = this
         initTypeWriterTextAnim()
         initGet()
         observeViewModel()
@@ -64,6 +68,11 @@ class PostFragment : BaseFragment<FragmentPostBinding>(R.layout.fragment_post) {
         binding.loadingTxt.setVisibility(false)
         binding.postRecyclerView.visibility = View.VISIBLE
         initRecyclerView()
+    }
+
+    fun clickSetPostBtn(view: View){
+        mainViewModel.setActionView(false)
+        this.findNavController().navigate(R.id.action_postFragment_to_setPostFragment)
     }
 
     private fun initRecyclerView() {

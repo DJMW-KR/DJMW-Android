@@ -6,5 +6,6 @@
     <dimen name="question_bottom_sheet_size">17sp</dimen>
     <dimen name="profile_btn_line">2dp</dimen>
     <dimen name="post_floating_btn">60dp</dimen>
+    <dimen name="back_btn_size">40dp</dimen>
 
 </resources>
