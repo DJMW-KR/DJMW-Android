@@ -4,7 +4,7 @@
     <data>
         <variable
             name="data"
-            type="com.pss.djmw_android.data.model.GetPost" />
+            type="com.pss.djmw_android.data.model.Post" />
     </data>
 
     <LinearLayout

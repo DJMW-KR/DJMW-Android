@@ -1,12 +1,11 @@
 package com.pss.djmw_android.view.main.post.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.pss.djmw_android.R
-import com.pss.djmw_android.data.model.GetPost
+import com.pss.djmw_android.data.model.Post
 import com.pss.djmw_android.databinding.PostRecyclerViewItemBinding
 import com.pss.djmw_android.viewmodel.PostViewModel
 
@@ -40,7 +39,7 @@ class PostRecyclerViewAdapter(
 
     inner class PostRecyclerViewHolder(val binding: PostRecyclerViewItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: GetPost) {
+        fun bind(data: Post) {
             binding.data = data
             binding.executePendingBindings()
         }

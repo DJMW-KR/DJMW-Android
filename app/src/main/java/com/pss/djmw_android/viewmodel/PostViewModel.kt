@@ -3,7 +3,7 @@ package com.pss.djmw_android.viewmodel
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.pss.djmw_android.data.model.GetPost
+import com.pss.djmw_android.data.model.Post
 import com.pss.djmw_android.repository.PostRepository
 import com.pss.djmw_android.widget.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,13 +19,13 @@ class PostViewModel @Inject constructor(
     val eventError: LiveData<Int> get() = _eventError
     private val _eventError = SingleLiveEvent<Int>()
 
-    val postList = arrayListOf<GetPost>()
+    val postList = arrayListOf<Post>()
 
 
     fun getPost() = postRepository.getPost()
         .addOnSuccessListener {
             for (item in it.documents) {
-                item.toObject(GetPost::class.java).let {
+                item.toObject(Post::class.java).let {
                     Log.d("로그","postrepository : $it")
                     postList.add(it!!)
                 }
@@ -36,4 +36,6 @@ class PostViewModel @Inject constructor(
         .addOnFailureListener {
             _eventError.postValue(0)
         }
+
+    fun setPost(post : Post) = postRepository.setPost(post)
 }

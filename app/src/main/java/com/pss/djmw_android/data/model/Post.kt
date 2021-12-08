@@ -1,6 +1,6 @@
 package com.pss.djmw_android.data.model
 
-data class GetPost(
+data class Post(
     val title : String,
     val content : String,
     val date : String
