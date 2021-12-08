@@ -22,7 +22,6 @@ class PostFragment : BaseFragment<FragmentPostBinding>(R.layout.fragment_post) {
 
 
     override fun init() {
-        postViewModel.postList.clear()
         initTypeWriterTextAnim()
         initGet()
         observeViewModel()
@@ -42,17 +41,23 @@ class PostFragment : BaseFragment<FragmentPostBinding>(R.layout.fragment_post) {
     }
 
     private fun initGet() {
-        postViewModel.getPost()
+        if (postViewModel.postList.isNullOrEmpty()){
+            postViewModel.postList.clear()
+            postViewModel.getPost()
+        }else initPostView()
     }
 
     private fun observeViewModel() {
         postViewModel.eventGetPostSuccess.observe(this, {
-            Log.d("로그", "Post 가져온 값 : $it")
-            binding.loadingBar.setVisibility(false)
-            binding.loadingTxt.setVisibility(false)
-            binding.postRecyclerView.visibility = View.VISIBLE
-            initRecyclerView()
+            initPostView()
         })
+    }
+
+    private fun initPostView(){
+        binding.loadingBar.setVisibility(false)
+        binding.loadingTxt.setVisibility(false)
+        binding.postRecyclerView.visibility = View.VISIBLE
+        initRecyclerView()
     }
 
     private fun initRecyclerView() {
