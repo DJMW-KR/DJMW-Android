@@ -28,6 +28,7 @@ class PostFragment : BaseFragment<FragmentPostBinding>(R.layout.fragment_post) {
         binding.fragment = this
         initTypeWriterTextAnim()
         initGet()
+        initSwipeLayout()
         observeViewModel()
     }
 
@@ -53,20 +54,29 @@ class PostFragment : BaseFragment<FragmentPostBinding>(R.layout.fragment_post) {
 
     private fun observeViewModel() {
         postViewModel.eventGetPostSuccess.observe(this, {
+            binding.swipeLayout.isRefreshing = false
             initPostView()
         })
 
         postViewModel.eventError.observe(this,{
+            binding.swipeLayout.isRefreshing = false
             when(it){
                 0 -> shortShowToast("게시물을 가져오는데 오류가 발생했습니다")
             }
         })
     }
 
+    private fun initSwipeLayout(){
+        binding.swipeLayout.setOnRefreshListener {
+            postViewModel.postList.clear()
+            postViewModel.getPost()
+        }
+    }
+
     private fun initPostView(){
         binding.loadingBar.setVisibility(false)
         binding.loadingTxt.setVisibility(false)
-        binding.postRecyclerView.visibility = View.VISIBLE
+        binding.swipeLayout.visibility = View.VISIBLE
         initRecyclerView()
     }
 
