@@ -21,7 +21,7 @@
             set_title="@{data.title}"
             android:fontFamily="@font/noto_sans_kr_bold"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:includeFontPadding="false" />
 
         <TextView
