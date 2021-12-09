@@ -12,7 +12,7 @@ import com.pss.djmw_android.R
 
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_profile) {
-    private val viewModel by activityViewModels<MainViewModel>()
+    private val mainViewModel by activityViewModels<MainViewModel>()
 
 
     override fun init() {
@@ -21,7 +21,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
 
     private fun initText() {
         binding.apply {
-            viewModel.eventGetUserInfo.value?.apply {
+            mainViewModel.eventGetUserInfo.value?.apply {
                 //참여한 문제 개수 카운트
                 userInfoCountAnimation(
                     participationQuestion.toString().toInt(),
@@ -32,6 +32,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
                 userInfoCountAnimation(
                     answerQuestion.toString().toInt(),
                     binding.answerQuestionScore
+                )
+
+                //랭킹 등수 카운트
+                userInfoCountAnimation(
+                    mainViewModel.eventUserRankingInfo.value.toString().toInt(),
+                    binding.rankingScore
                 )
                 userNiceName.text = userName
             }
