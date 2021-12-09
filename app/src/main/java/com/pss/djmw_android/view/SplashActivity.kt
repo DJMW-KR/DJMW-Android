@@ -142,7 +142,8 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
                     userName = mainViewModel.eventGetUserInfo.value!!.userName,
                     userId = mainViewModel.eventGetUserInfo.value!!.userId,
                     participationQuestion = mainViewModel.eventGetUserInfo.value!!.participationQuestion,
-                    answerQuestion = mainViewModel.eventGetUserInfo.value!!.answerQuestion
+                    answerQuestion = mainViewModel.eventGetUserInfo.value!!.answerQuestion,
+                    score = "0"
                 )
             )
             startActivity(intent)

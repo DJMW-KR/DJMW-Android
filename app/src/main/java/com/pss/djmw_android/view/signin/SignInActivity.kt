@@ -70,7 +70,8 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
                                         userId = "${user.id}",
                                         userName = "${user.kakaoAccount?.profile?.nickname}",
                                         answerQuestion = "0",
-                                        participationQuestion = "0"
+                                        participationQuestion = "0",
+                                        score = "0"
                                     )
                                 )
                             }
