@@ -1,5 +1,6 @@
 package com.pss.djmw_android.view.main
 
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -23,7 +24,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun init() {
         observeViewModel()
         initGetValues()
-        initBottomNavBar()
     }
 
     private fun initGetValues() {
@@ -31,6 +31,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             intent.getParcelableArrayListExtra<Question>("questionList") as ArrayList<Question>
         intent.getParcelableExtra<UserInfo>("userInfo")
             ?.let { mainViewModel.setEventGetUserInfo(it) }
+        mainViewModel.setUserRankingInfo(intent.getIntExtra("userRanking", 9999))
     }
 
     private fun observeViewModel() {
@@ -39,6 +40,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 true -> binding.bottomNav.setVisibility(true)
                 false -> binding.bottomNav.setVisibility(false)
             }
+        })
+
+        mainViewModel.eventUserRankingInfo.observe(this,{
+            initBottomNavBar()
         })
     }
 

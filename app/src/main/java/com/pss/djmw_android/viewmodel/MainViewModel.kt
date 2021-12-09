@@ -48,6 +48,8 @@ class MainViewModel @Inject constructor(
     var questionItemPosition = 0
 
 
+    fun setUserRankingInfo(content : Int) = _eventUserRankingInfo.postValue(content)
+
     fun setEventGetUserInfo(content : UserInfo) = _eventGetUserInfo.postValue(content)
 
     fun setActionView(content : Boolean) = _eventActionView.postValue(content)
@@ -70,7 +72,7 @@ class MainViewModel @Inject constructor(
 
     }
 
-    fun userRankingInfo() = mainRepository.userRankingInfo()
+    fun getUserRankingInfo() = mainRepository.userRankingInfo()
         .addOnSuccessListener {
             for (item in it.documents){
                 userRankingList.add(item.toObject(UserInfo::class.java)!!)
@@ -78,7 +80,7 @@ class MainViewModel @Inject constructor(
             for (item in 0..userRankingList.size){
                 //사용자 id
                 if (_eventGetUserInfo.value?.userId == userRankingList[item].userId){
-                    _eventUserRankingInfo.postValue(item)
+                    _eventUserRankingInfo.postValue(item+1)
                     break
                 }
             }

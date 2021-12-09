@@ -111,6 +111,8 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
 
     private fun getUserInfo(userUid: String) = mainViewModel.getUserInfo(userUid)
 
+    private fun getUserRankingInfo() = mainViewModel.getUserRankingInfo()
+
     private fun setWindowFlag(bits: Int, on: Boolean) {
         val win = window
         val winParams = win.attributes
@@ -123,10 +125,17 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
     }
 
     private fun observeViewModel() {
+        //Splash 값 가져오는 로직 순서 = getUserInfo -> getQuestion -> getUserRankingInfo
+
         mainViewModel.eventGetQuestion.observe(this, {
+            getUserRankingInfo()
+        })
+
+        mainViewModel.eventUserRankingInfo.observe(this,{ ranking ->
             val array = mainViewModel.questionList
             val intent = Intent(this, MainActivity::class.java)
             intent.putParcelableArrayListExtra("questionList", array)
+            intent.putExtra("userRanking", ranking)
             intent.putExtra(
                 "userInfo",
                 UserInfo(
