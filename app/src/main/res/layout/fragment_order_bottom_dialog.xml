@@ -32,82 +32,89 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/question_1"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_marginStart="28dp"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/noto_sans_kr_regular"
-            android:includeFontPadding="false"
-            android:onClick="@{fragment::onClickEvent}"
-            android:text="질문을 불러오는 중입니다"
-            android:textColor="@color/question_bottom_sheet_color"
-            android:textSize="@dimen/question_bottom_sheet_size"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_order" />
+            app:layout_constraintTop_toBottomOf="@id/text_order"
+            android:layout_marginEnd="28dp">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/question_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/question_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/noto_sans_kr_regular"
-            android:includeFontPadding="false"
-            android:onClick="@{fragment::onClickEvent}"
-            android:text="질문을 불러오는 중입니다"
-            android:textColor="@color/question_bottom_sheet_color"
-            android:textSize="@dimen/question_bottom_sheet_size"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/question_1"
-            app:layout_goneMarginStart="28dp" />
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                android:onClick="@{fragment::onClickEvent}"
+                android:text="질문을 불러오는 중입니다"
+                android:textColor="@color/question_bottom_sheet_color"
+                android:textSize="@dimen/question_bottom_sheet_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_order" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/question_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/noto_sans_kr_regular"
-            android:includeFontPadding="false"
-            android:onClick="@{fragment::onClickEvent}"
-            android:text="질문을 불러오는 중입니다"
-            android:textColor="@color/question_bottom_sheet_color"
-            android:textSize="@dimen/question_bottom_sheet_size"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/question_2" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/question_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                android:onClick="@{fragment::onClickEvent}"
+                android:text="질문을 불러오는 중입니다"
+                android:textColor="@color/question_bottom_sheet_color"
+                android:textSize="@dimen/question_bottom_sheet_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/question_1"
+                app:layout_goneMarginStart="28dp" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/question_4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/noto_sans_kr_regular"
-            android:includeFontPadding="false"
-            android:onClick="@{fragment::onClickEvent}"
-            android:text="질문을 불러오는 중입니다"
-            android:textColor="@color/question_bottom_sheet_color"
-            android:textSize="@dimen/question_bottom_sheet_size"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/question_3" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/question_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                android:onClick="@{fragment::onClickEvent}"
+                android:text="질문을 불러오는 중입니다"
+                android:textColor="@color/question_bottom_sheet_color"
+                android:textSize="@dimen/question_bottom_sheet_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/question_2" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/question_5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/noto_sans_kr_regular"
-            android:includeFontPadding="false"
-            android:onClick="@{fragment::onClickEvent}"
-            android:text="질문을 불러오는 중입니다"
-            android:textColor="@color/question_bottom_sheet_color"
-            android:textSize="@dimen/question_bottom_sheet_size"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/question_4"
-            app:layout_goneMarginStart="28dp" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/question_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                android:onClick="@{fragment::onClickEvent}"
+                android:text="질문을 불러오는 중입니다"
+                android:textColor="@color/question_bottom_sheet_color"
+                android:textSize="@dimen/question_bottom_sheet_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/question_3" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/question_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                android:onClick="@{fragment::onClickEvent}"
+                android:text="질문을 불러오는 중입니다"
+                android:textColor="@color/question_bottom_sheet_color"
+                android:textSize="@dimen/question_bottom_sheet_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/question_4"
+                app:layout_goneMarginStart="28dp" />
+        </LinearLayout>
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
