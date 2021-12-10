@@ -1,6 +1,19 @@
 # DJMW-Android
 
+## 🎯 Use stack & skill
+- Kotlin 100%
+- Firebase
+- MVVM
+- ACC
+- Dagger Hilt
+- DataBinding
+
+<br>
+
+## 👀 App architecture
 #### 앱 아키텍처는 1개의 모듈(app)을 사용한 View -> ViewModel -> Repository -> Data 로 하였습니다
+
+<br>
 
 ## 🎞️ Demonstration
 |||
@@ -10,7 +23,8 @@
 |![Profile](https://user-images.githubusercontent.com/67040465/145500664-47d46cdb-d014-457e-8a07-f1d16ab44a71.gif)|![Post](https://user-images.githubusercontent.com/67040465/145500470-30eb725e-14f9-47d1-bf9c-9406270b115c.gif)|
 |Profile|Post|
 
-<br><br>
+<br>
+
 ## 👨‍✈️ Licenses
 #### CC-BY-NC-ND
 #### 저작자와 출처를 입력하면 사용할 수는 있지만, 상업적인 용도로는 불가능하고 또 변경을 해서도 안됩니다
