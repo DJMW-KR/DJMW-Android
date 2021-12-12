@@ -75,6 +75,7 @@ class MainViewModel @Inject constructor(
     fun getUserRankingInfo() = mainRepository.userRankingInfo()
         .addOnSuccessListener {
             for (item in it.documents){
+                Log.d("로그","가져온 랭킹 정보 : $item")
                 userRankingList.add(item.toObject(UserInfo::class.java)!!)
             }
             for (item in 0..userRankingList.size){

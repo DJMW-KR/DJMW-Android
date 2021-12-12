@@ -104,4 +104,10 @@ dependencies {
 
     //타자기처럼 한 글자씩 textview에 출력 애니메이션
     implementation 'in.codeshuffle:typewriterview:1.1.0'
+
+    //cardView
+    implementation 'androidx.cardview:cardview:1.0.0'
+
+    //viewPager
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
 }

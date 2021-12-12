@@ -12,7 +12,7 @@ data class UserInfo(
     //참여한 질문
     val participationQuestion: String,
     //점수
-    val score: String
+    val score: Int
 ) : Parcelable {
-    constructor() : this("오류", "오류", "0", "0", "0")
+    constructor() : this("오류", "오류", "0", "0", 0)
 }

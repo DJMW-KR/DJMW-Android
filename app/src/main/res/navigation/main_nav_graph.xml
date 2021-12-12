@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/rankingFragment"
-        android:name="com.pss.djmw_android.view.main.RankingFragment"
+        android:name="com.pss.djmw_android.view.main.ranking.RankingFragment"
         tools:layout="@layout/fragment_ranking"
         android:label="RankingFragment" />
     <fragment

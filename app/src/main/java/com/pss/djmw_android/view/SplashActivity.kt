@@ -46,6 +46,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
                 else longShowToast("앱이 최신버전이 아닙니다, 앱을 업데이트 하세요!")
             }
             .addOnFailureListener {
+                Log.d("로그","인터넷 연결 에러 : $it")
                 shortShowToast("인터넷 연결을 확인하세요")
             }
         observeViewModel()
