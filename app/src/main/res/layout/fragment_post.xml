@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/noto_sans_kr_bold"
         android:includeFontPadding="false"
-        android:text="당신의 고민을 남겨보세요"
+        android:text="고민 게시판"
         android:layout_marginTop="20dp"
         android:layout_marginStart="15dp"
         android:textColor="@color/black"
