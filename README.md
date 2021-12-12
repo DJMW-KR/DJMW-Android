@@ -38,6 +38,6 @@
 
 ## 👨‍✈️ Licenses
 #### CC-BY-NC-ND
-#### You can use it by entering the author and source, but it is impossible for commercial purposes and should not be changed
 #### 저작자와 출처를 입력하면 사용할 수는 있지만, 상업적인 용도로는 불가능하고 또 변경을 해서도 안됩니다
+#### You can use it by entering the author and source, but it is impossible for commercial purposes and should not be changed
 #### ![image](https://user-images.githubusercontent.com/67040465/124205946-4a2e1280-db1d-11eb-9200-eb6f6306531b.png)
