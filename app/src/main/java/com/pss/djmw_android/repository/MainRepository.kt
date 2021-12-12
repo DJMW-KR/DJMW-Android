@@ -43,6 +43,7 @@ class MainRepository @Inject constructor(
         }
     }
 
+    //랭킹 정보 가져오기
     fun userRankingInfo() = firestore.collection("userInfo").orderBy("score", Query.Direction.DESCENDING).get()
 
     private fun setChoiceQuestionStatistics(questionName: String, choice: String, result: Int) =
