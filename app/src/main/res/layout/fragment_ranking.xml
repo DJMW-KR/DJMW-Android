@@ -56,9 +56,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TOP 3 랭킹을 확인해보세요"
+                    android:text="TOP 3 랭킹을 확인해 보세요"
                     android:textSize="20sp"
-                    android:textColor="@color/black"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#272727"
                     android:fontFamily="@font/noto_sans_kr_bold"
                     android:includeFontPadding="false"
                     />
@@ -71,6 +72,25 @@
                     android:foregroundGravity="center"
                     android:overScrollMode="never"
                     />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="주변 등수의 사람들을 확인하세요"
+                    android:textSize="20sp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="30dp"
+                    android:textColor="#272727"
+                    android:fontFamily="@font/noto_sans_kr_bold"
+                    android:includeFontPadding="false"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/around_ranking_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
