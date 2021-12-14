@@ -55,6 +55,8 @@ class PostFragment : BaseFragment<FragmentPostBinding>(R.layout.fragment_post) {
     private fun observeViewModel() {
         postViewModel.eventGetPostSuccess.observe(this, {
             binding.swipeLayout.isRefreshing = false
+            //binding.postRecyclerView.isEnabled = true
+            binding.postRecyclerView.setVisibility(true)
             initPostView()
         })
 
@@ -69,6 +71,7 @@ class PostFragment : BaseFragment<FragmentPostBinding>(R.layout.fragment_post) {
     private fun initSwipeLayout(){
         binding.swipeLayout.setOnRefreshListener {
             postViewModel.postList.clear()
+            binding.postRecyclerView.setVisibility(false)
             postViewModel.getPost()
         }
     }
