@@ -32,4 +32,18 @@ object RankingBindingAdapter {
     fun setAnswerScore(text: TextView, score: String) {
         text.text = score
     }
+
+    //All Ranking 리사이클러뷰 이름
+    @JvmStatic
+    @BindingAdapter("set_all_ranking_name")
+    fun setAllRankingName(text: TextView, name: String) {
+        text.text = name
+    }
+
+    //All Ranking 리사이클러뷰 점수
+    @JvmStatic
+    @BindingAdapter("set_all_ranking_score")
+    fun setAllRankingScore(text: TextView, score: Int) {
+        text.text = score.toString()
+    }
 }
