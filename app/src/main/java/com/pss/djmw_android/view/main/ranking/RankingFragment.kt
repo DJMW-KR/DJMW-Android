@@ -17,8 +17,17 @@ class RankingFragment : BaseFragment<FragmentRankingBinding>(R.layout.fragment_r
 
 
     override fun init() {
+        initTypeWriterTextAnim()
         initViewPager()
         initRecyclerView()
+    }
+
+    private fun initTypeWriterTextAnim() {
+        binding.content.apply {
+            setDelay(1)
+            setWithMusic(false)
+            animateText("다른 사람들과 함께 경쟁해 보세요!")
+        }
     }
 
     private fun initViewPager() {
