@@ -23,7 +23,7 @@ class RankingFragment : BaseFragment<FragmentRankingBinding>(R.layout.fragment_r
 
     private fun initViewPager() {
         val imgList = arrayListOf<Int>(R.drawable.first, R.drawable.second, R.drawable.third)
-        binding.viewPager2.run {
+        with(binding.viewPager2) {
             adapter = RankingViewPagerAdapter(mainViewModel, requireContext(), imgList)
             setPadding(30, 0, 30, 0)
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {

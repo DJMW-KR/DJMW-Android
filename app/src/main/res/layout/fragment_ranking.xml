@@ -76,10 +76,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="주변 등수의 사람들을 확인하세요"
+                    android:text="전체 랭킹을 확인해 보세요"
                     android:textSize="20sp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="30dp"
+                    android:layout_marginBottom="10dp"
                     android:textColor="#272727"
                     android:fontFamily="@font/noto_sans_kr_bold"
                     android:includeFontPadding="false"
