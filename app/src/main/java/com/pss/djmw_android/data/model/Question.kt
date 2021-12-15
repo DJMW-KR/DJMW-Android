@@ -11,9 +11,8 @@ data class Question(
     var answer_three : String,
     var answer_four : String,
     var answer_five : String,
-    var question : String,
-    var people : String
-) : Parcelable
+    var question : String
+    ) : Parcelable
 {
-    constructor() : this("오류가 발생했습니다", "오류가 발생했습니다","오류가 발생했습니다","오류가 발생했습니다","오류가 발생했습니다","오류가 발생했습니다","오류가 발생했습니다")
+    constructor() : this("오류가 발생했습니다","오류가 발생했습니다","오류가 발생했습니다","오류가 발생했습니다","오류가 발생했습니다","오류가 발생했습니다")
 }

@@ -32,6 +32,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+<!--        set_people="@{data.people}"-->
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -40,7 +42,6 @@
             android:text="참여인원 : 9999"
             android:textColor="#B0B0B0"
             android:textSize="15sp"
-            set_people="@{data.people}"
             android:layout_marginTop="7dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textView6"
