@@ -138,16 +138,21 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             intent.putParcelableArrayListExtra("questionList", array)
             intent.putParcelableArrayListExtra("userRankingList", mainViewModel.userRankingList)
             intent.putExtra("userRanking", ranking)
-            intent.putExtra(
-                "userInfo",
-                UserInfo(
-                    userName = mainViewModel.eventGetUserInfo.value!!.userName,
-                    userId = mainViewModel.eventGetUserInfo.value!!.userId,
-                    participationQuestion = mainViewModel.eventGetUserInfo.value!!.participationQuestion,
-                    answerQuestion = mainViewModel.eventGetUserInfo.value!!.answerQuestion,
-                    score = mainViewModel.eventGetUserInfo.value!!.score
+            with(mainViewModel.eventGetUserInfo.value!!){
+                intent.putExtra(
+                    "userInfo",
+                    UserInfo(
+                        userName = this.userName,
+                        userId = this.userId,
+                        participationQuestion = this.participationQuestion,
+                        answerQuestion = this.answerQuestion,
+                        score = this.score,
+                        sex = this.sex,
+                        stop = this.stop
+                    )
                 )
-            )
+            }
+
             startActivity(intent)
             finish()
         })
