@@ -104,6 +104,8 @@ class OrderBottomDialogFragment(val itemClick: (Int) -> Unit) :
                         }
                 }
                 "woman" ->{
+                    Log.d("로그","holder 값 : $holder")
+                    Log.d("로그","holder 값 : ${viewModel.womanQuestionList[holder]}")
                     viewModel.getQuestionStatistics(
                         viewModel.womanQuestionList[holder].question,
                         num,

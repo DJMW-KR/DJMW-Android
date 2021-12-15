@@ -28,7 +28,6 @@ class MainRepository @Inject constructor(
     //여자 질문 가져오기
     fun getWomanQuestion() = firestore.collection("woman_question").get()
 
-
     //firebase rtdb에서 통계 가져오기
     fun getQuestionStatistics(
         questionName: String,
@@ -84,9 +83,15 @@ class MainRepository @Inject constructor(
             .setValue(result)
     }
 
-
     private fun getChoiceNumberQuestionStatistics(questionName: String, num: String, sex: String) =
-        if (sex == "man") firebaseDatabase.reference.child("man_question").child(questionName)
-            .child(num).get()
-        else firebaseDatabase.reference.child("woman_question").child(questionName).child(num).get()
+        if (sex == "man") {
+                       Log.d("로그","getChoiceNumberQuestionStatistics if : $questionName, $num, $sex")
+
+            firebaseDatabase.reference.child("man_question").child(questionName)
+                .child(num).get()
+        }
+        else {
+            Log.d("로그","getChoiceNumberQuestionStatistics else : $questionName, $num, $sex")
+            firebaseDatabase.reference.child("woman_question").child(questionName).child(num).get()
+        }
 }
