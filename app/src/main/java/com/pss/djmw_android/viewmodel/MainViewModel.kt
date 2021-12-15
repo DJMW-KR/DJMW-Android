@@ -59,8 +59,8 @@ class MainViewModel @Inject constructor(
 
     fun setActionView(content: Boolean) = _eventActionView.postValue(content)
 
-    fun setQuestionStatistics(questionName: String, choiceNumber: Int, result: Int) =
-        mainRepository.setQuestionStatistics(questionName, choiceNumber, result)
+    fun setQuestionStatistics(questionName: String, choiceNumber: Int, result: Int, sex: String) =
+        mainRepository.setQuestionStatistics(questionName, choiceNumber, result, sex)
 
     fun getQuestionStatistics(questionName: String, choiceNumber: Int, sex : String) =
         mainRepository.getQuestionStatistics(questionName, choiceNumber, sex)

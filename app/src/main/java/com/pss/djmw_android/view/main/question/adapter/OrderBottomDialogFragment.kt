@@ -79,7 +79,8 @@ class OrderBottomDialogFragment(val itemClick: (Int) -> Unit) :
                                 viewModel.setQuestionStatistics(
                                     viewModel.manQuestionList[holder].question,
                                     num,
-                                    plusResult
+                                    plusResult,
+                                    viewModel.eventGetUserInfo.value!!.sex
                                 )
                                     .addOnSuccessListener {
                                         Toast.makeText(
@@ -118,7 +119,8 @@ class OrderBottomDialogFragment(val itemClick: (Int) -> Unit) :
                                 viewModel.setQuestionStatistics(
                                     viewModel.womanQuestionList[holder].question,
                                     num,
-                                    plusResult
+                                    plusResult,
+                                    viewModel.eventGetUserInfo.value!!.sex
                                 )
                                     .addOnSuccessListener {
                                         Toast.makeText(

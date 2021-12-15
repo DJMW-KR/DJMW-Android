@@ -49,14 +49,19 @@ class MainRepository @Inject constructor(
     fun getUserInfo(userUid: String) = firestore.collection("userInfo").document(userUid).get()
 
     //firebase rtdb의 통계 값에 +1하기
-    fun setQuestionStatistics(questionName: String, choiceNumber: Int, result: Int): Task<Void> {
+    fun setQuestionStatistics(
+        questionName: String,
+        choiceNumber: Int,
+        result: Int,
+        sex: String
+    ): Task<Void> {
         return when (choiceNumber) {
-            0 -> setChoiceQuestionStatistics(questionName, "statistics_one", result)
-            1 -> setChoiceQuestionStatistics(questionName, "statistics_two", result)
-            2 -> setChoiceQuestionStatistics(questionName, "statistics_three", result)
-            3 -> setChoiceQuestionStatistics(questionName, "statistics_four", result)
-            4 -> setChoiceQuestionStatistics(questionName, "statistics_five", result)
-            else -> setChoiceQuestionStatistics(questionName, "statistics_one", result)
+            0 -> setChoiceQuestionStatistics(questionName, "statistics_one", result, sex)
+            1 -> setChoiceQuestionStatistics(questionName, "statistics_two", result, sex)
+            2 -> setChoiceQuestionStatistics(questionName, "statistics_three", result, sex)
+            3 -> setChoiceQuestionStatistics(questionName, "statistics_four", result, sex)
+            4 -> setChoiceQuestionStatistics(questionName, "statistics_five", result, sex)
+            else -> setChoiceQuestionStatistics(questionName, "statistics_one", result, sex)
         }
     }
 
@@ -64,11 +69,24 @@ class MainRepository @Inject constructor(
     fun userRankingInfo() =
         firestore.collection("userInfo").orderBy("score", Query.Direction.DESCENDING).get()
 
-    private fun setChoiceQuestionStatistics(questionName: String, choice: String, result: Int) =
-        firebaseDatabase.reference.child("question").child(questionName).child(choice)
+    private fun setChoiceQuestionStatistics(
+        questionName: String,
+        choice: String,
+        result: Int,
+        sex: String
+    ) = when (sex) {
+        "man" -> firebaseDatabase.reference.child("man_question").child(questionName).child(choice)
             .setValue(result)
+        "woman" -> firebaseDatabase.reference.child("woman_question").child(questionName)
+            .child(choice)
+            .setValue(result)
+        else -> firebaseDatabase.reference.child("man_question").child(questionName).child(choice)
+            .setValue(result)
+    }
+
 
     private fun getChoiceNumberQuestionStatistics(questionName: String, num: String, sex: String) =
-        if (sex == "man") firebaseDatabase.reference.child("man_question").child(questionName).child(num).get()
+        if (sex == "man") firebaseDatabase.reference.child("man_question").child(questionName)
+            .child(num).get()
         else firebaseDatabase.reference.child("woman_question").child(questionName).child(num).get()
 }
