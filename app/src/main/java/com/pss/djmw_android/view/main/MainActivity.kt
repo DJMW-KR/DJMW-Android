@@ -31,8 +31,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             intent.getParcelableArrayListExtra<UserInfo>("userRankingList") as ArrayList<UserInfo>
         mainViewModel.questionList =
             intent.getParcelableArrayListExtra<Question>("questionList") as ArrayList<Question>
-        intent.getParcelableExtra<UserInfo>("userInfo")
-            ?.let { mainViewModel.setEventGetUserInfo(it) }
         mainViewModel.setUserRankingInfo(intent.getIntExtra("userRanking", 9999))
     }
 
@@ -44,8 +42,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             }
         })
 
-        mainViewModel.eventUserRankingInfo.observe(this,{
+        mainViewModel.eventGetUserInfo.observe(this,{
+            Log.d("로그","값 저장됨 : $it")
             initBottomNavBar()
+        })
+
+        mainViewModel.eventUserRankingInfo.observe(this,{
+            intent.getParcelableExtra<UserInfo>("userInfo")
+                ?.let { mainViewModel.setEventGetUserInfo(it) }
         })
     }
 

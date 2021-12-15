@@ -11,4 +11,6 @@
     <color name="main_color">#F05D6C</color>
     <color name="sub_color">#FDB0C0</color>
     <color name="question_bottom_sheet_color">#8A8A8A</color>
+    <color name="man_txt_color">#80AAFF</color>
+    <color name="woman_txt_color">#FF8099</color>
 </resources>

@@ -12,94 +12,114 @@
         android:layout_height="match_parent"
         tools:context=".view.main.question.QuestionFragment">
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/noto_sans_kr_bold"
-            android:includeFontPadding="false"
-            android:text="당신은 "
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="15dp"
-            android:textColor="@color/black"
-            android:textSize="30sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/noto_sans_kr_bold"
-            android:includeFontPadding="false"
-            android:text="남자 "
-            android:textColor="#80AAFF"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView3"
-            app:layout_constraintStart_toEndOf="@+id/textView3"
-            app:layout_constraintTop_toTopOf="@+id/textView3" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/noto_sans_kr_bold"
-            android:includeFontPadding="false"
-            android:text="입니다"
-            android:textColor="@color/black"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView2"
-            app:layout_constraintStart_toEndOf="@+id/textView2"
-            app:layout_constraintTop_toTopOf="@+id/textView2" />
-
-        <in.codeshuffle.typewriterview.TypeWriterView
-            android:id="@+id/content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:fontFamily="@font/noto_sans_kr_medium"
-            android:includeFontPadding="false"
-            android:text="이성의 질문에 답변해 보세요!"
-            android:textColor="#939393"
-            android:textSize="17sp"
-            app:layout_constraintStart_toStartOf="@+id/textView3"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:background="#00000000"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/content"
-            app:tabGravity="center"
-            app:tabIndicator="@drawable/tab_indicator"
-            app:tabIndicatorAnimationMode="elastic"
-            app:tabIndicatorColor="@color/main_color"
-            app:tabIndicatorGravity="stretch"
-            app:tabMode="fixed"
-            app:tabRippleColor="#00000000"
-            app:tabSelectedTextColor="@color/white"
-            app:tabTextAppearance="@style/tab_text"
-            app:tabTextColor="#9F9F9F" />
-
-
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/view_pager"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/frame"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="20dp"
-            android:layout_centerHorizontal="true"
-            android:background="@color/white"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/noto_sans_kr_bold"
+                android:includeFontPadding="false"
+                android:text="당신은 "
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/sex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_kr_bold"
+                android:includeFontPadding="false"
+                android:text="남자 "
+                android:textColor="@color/man_txt_color"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView3"
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_kr_bold"
+                android:includeFontPadding="false"
+                android:text="입니다"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="@+id/sex"
+                app:layout_constraintStart_toEndOf="@+id/sex"
+                app:layout_constraintTop_toTopOf="@+id/sex" />
+
+            <in.codeshuffle.typewriterview.TypeWriterView
+                android:id="@+id/content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:includeFontPadding="false"
+                android:text="이성의 질문에 답변해 보세요!"
+                android:textColor="#939393"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="@+id/textView3"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:background="#00000000"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/content"
+                app:tabGravity="center"
+                app:tabIndicator="@drawable/tab_indicator"
+                app:tabIndicatorAnimationMode="elastic"
+                app:tabIndicatorColor="@color/main_color"
+                app:tabIndicatorGravity="stretch"
+                app:tabMode="fixed"
+                app:tabRippleColor="#00000000"
+                app:tabSelectedTextColor="@color/white"
+                app:tabTextAppearance="@style/tab_text"
+                app:tabTextColor="#9F9F9F" />
+
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tab_layout" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loading_bar"
+            android:layout_width="280dp"
+            android:layout_height="280dp"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tab_layout" />
-
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
