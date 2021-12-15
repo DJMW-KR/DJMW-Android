@@ -104,8 +104,6 @@ class OrderBottomDialogFragment(val itemClick: (Int) -> Unit) :
                         }
                 }
                 "woman" ->{
-                    Log.d("로그","holder 값 : $holder")
-                    Log.d("로그","holder 값 : ${viewModel.womanQuestionList[holder]}")
                     viewModel.getQuestionStatistics(
                         viewModel.womanQuestionList[holder].question,
                         num,
@@ -165,7 +163,6 @@ class OrderBottomDialogFragment(val itemClick: (Int) -> Unit) :
     private fun initText() {
         val holder = viewModel.questionItemPosition
         try {
-            Log.d("로그","바텀시트 유저정보 : ${viewModel.eventGetUserInfo.value?.sex}")
             when(viewModel.eventGetUserInfo.value?.sex){
                 "man" ->{
                     Log.d("로그","여기 man")
@@ -178,8 +175,6 @@ class OrderBottomDialogFragment(val itemClick: (Int) -> Unit) :
                     }
                 }
                 "woman" ->{
-                    Log.d("로그","여기 woman")
-                    Log.d("로그","woman list : ${viewModel.womanQuestionList[0]}")
                     with(viewModel.womanQuestionList[holder]){
                         binding.question1.text = this.answer_one
                         binding.question2.text = this.answer_two
