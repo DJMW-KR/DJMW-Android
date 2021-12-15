@@ -23,14 +23,20 @@ class PostViewModel @Inject constructor(
     val eventError: LiveData<Int> get() = _eventError
     private val _eventError = SingleLiveEvent<Int>()
 
-    val postList = arrayListOf<Post>()
+    // val postList = arrayListOf<Post>()
+    lateinit var postList: ArrayList<Post>
 
+
+    fun initArrayList() {
+        postList = arrayListOf<Post>()
+    }
 
     fun getPost() = postRepository.getPost()
         .addOnSuccessListener {
+            postList = arrayListOf<Post>()
             for (item in it.documents) {
                 item.toObject(Post::class.java).let {
-                    Log.d("로그","postrepository : $it")
+                    Log.d("로그", "postrepository : $it")
                     postList.add(it!!)
                 }
             }
@@ -41,7 +47,7 @@ class PostViewModel @Inject constructor(
             _eventError.postValue(0)
         }
 
-    fun setPost(post : Post) = postRepository.setPost(post)
+    fun setPost(post: Post) = postRepository.setPost(post)
         .addOnSuccessListener {
             _eventSetPostSuccess.call()
         }

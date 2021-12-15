@@ -26,6 +26,7 @@ class PostFragment : BaseFragment<FragmentPostBinding>(R.layout.fragment_post) {
 
     override fun init() {
         binding.fragment = this
+        postViewModel.initArrayList()
         initTypeWriterTextAnim()
         initGet()
         initSwipeLayout()
@@ -47,7 +48,6 @@ class PostFragment : BaseFragment<FragmentPostBinding>(R.layout.fragment_post) {
 
     private fun initGet() {
         if (postViewModel.postList.isNullOrEmpty()){
-            postViewModel.postList.clear()
             postViewModel.getPost()
         }else initPostView()
     }
@@ -55,8 +55,6 @@ class PostFragment : BaseFragment<FragmentPostBinding>(R.layout.fragment_post) {
     private fun observeViewModel() {
         postViewModel.eventGetPostSuccess.observe(this, {
             binding.swipeLayout.isRefreshing = false
-            //binding.postRecyclerView.isEnabled = true
-            binding.postRecyclerView.setVisibility(true)
             initPostView()
         })
 
@@ -70,8 +68,6 @@ class PostFragment : BaseFragment<FragmentPostBinding>(R.layout.fragment_post) {
 
     private fun initSwipeLayout(){
         binding.swipeLayout.setOnRefreshListener {
-            postViewModel.postList.clear()
-            binding.postRecyclerView.setVisibility(false)
             postViewModel.getPost()
         }
     }
