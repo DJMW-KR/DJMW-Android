@@ -14,14 +14,6 @@ class MainRepository @Inject constructor(
     private val firebaseDatabase: FirebaseDatabase,
     private val firestore: FirebaseFirestore
 ) {
-    val statisticsList = arrayListOf<String>(
-        "statistics_one",
-        "statistics_two",
-        "statistics_three",
-        "statistics_four",
-        "statistics_five"
-    )
-
     //남자 질문 가져오기
     fun getManQuestion() = firestore.collection("man_question").get()
 
@@ -68,6 +60,7 @@ class MainRepository @Inject constructor(
     fun userRankingInfo() =
         firestore.collection("userInfo").orderBy("score", Query.Direction.DESCENDING).get()
 
+    //바텀 시트 질문에 대한 대답 선택시 대답 통계 Set (+1)
     private fun setChoiceQuestionStatistics(
         questionName: String,
         choice: String,
@@ -83,15 +76,14 @@ class MainRepository @Inject constructor(
             .setValue(result)
     }
 
+    //바텀 시트 질문에 대한 대답 선택시 대답 통계 Get
     private fun getChoiceNumberQuestionStatistics(questionName: String, num: String, sex: String) =
         if (sex == "man") {
-                       Log.d("로그","getChoiceNumberQuestionStatistics if : $questionName, $num, $sex")
-
+            Log.d("로그", "getChoiceNumberQuestionStatistics if : $questionName, $num, $sex")
             firebaseDatabase.reference.child("man_question").child(questionName)
                 .child(num).get()
-        }
-        else {
-            Log.d("로그","getChoiceNumberQuestionStatistics else : $questionName, $num, $sex")
+        } else {
+            Log.d("로그", "getChoiceNumberQuestionStatistics else : $questionName, $num, $sex")
             firebaseDatabase.reference.child("woman_question").child(questionName).child(num).get()
         }
 }

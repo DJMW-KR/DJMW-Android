@@ -1,6 +1,5 @@
 package com.pss.djmw_android.view.main.question.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -13,7 +12,9 @@ import com.pss.djmw_android.viewmodel.MainViewModel
 
 class AnswerRecyclerViewAdapter(
     private val viewModel: MainViewModel,
-    private val fragment: Fragment
+    private val fragment: Fragment,
+    private val state: State,
+    private val sex: Sex
 ) : RecyclerView.Adapter<AnswerRecyclerViewAdapter.AnswerRecyclerViewHolder>() {
 
     init {
@@ -35,9 +36,39 @@ class AnswerRecyclerViewAdapter(
     }
 
     override fun onBindViewHolder(holder: AnswerRecyclerViewHolder, position: Int) {
-        Log.d("TAG", "AnswerRecyclerViewAdapter안 questionList : ${viewModel.manQuestionList}")
-        holder.bind(viewModel.manQuestionList[position])
+        when (state) {
+            State.ANSWER -> StateAnswer(holder, position)
+            State.ANSWERME -> StateAnswerMe(holder, position)
+        }
+    }
 
+    private fun StateAnswer(holder: AnswerRecyclerViewHolder, position: Int) {
+        when (sex) {
+            Sex.WOMAN -> holder.bind(viewModel.womanQuestionList[position])
+            Sex.MAN -> holder.bind(viewModel.manQuestionList[position])
+        }
+        // holder.bind(viewModel.manQuestionList[position])
+
+        //item 을 킬릭시 바텀시트 표시
+        holder.binding.itemFrame.setOnClickListener {
+            viewModel.questionItemPosition = position
+            val orderBottomDialogFragment: OrderBottomDialogFragment = OrderBottomDialogFragment {
+                /*Toast.makeText(fragment.requireContext(), "성공적으로 반영되었습니다!", Toast.LENGTH_SHORT)
+                    .show()*/
+            }
+            orderBottomDialogFragment.show(
+                fragment.requireActivity().supportFragmentManager,
+                orderBottomDialogFragment.tag
+            )
+        }
+    }
+
+    private fun StateAnswerMe(holder: AnswerRecyclerViewHolder, position: Int) {
+        //holder.bind(viewModel.manQuestionList[position])
+        when (sex) {
+            Sex.WOMAN -> holder.bind(viewModel.manQuestionList[position])
+            Sex.MAN -> holder.bind(viewModel.womanQuestionList[position])
+        }
         //item 을 킬릭시 바텀시트 표시
         holder.binding.itemFrame.setOnClickListener {
             viewModel.questionItemPosition = position
@@ -52,11 +83,16 @@ class AnswerRecyclerViewAdapter(
             )
 
         }
-
     }
 
     override fun getItemCount(): Int {
-        return viewModel.manQuestionList.size
+        return if (state == State.ANSWER) when (sex) {
+            Sex.MAN -> viewModel.manQuestionList.size
+            Sex.WOMAN -> viewModel.womanQuestionList.size
+        } else when (sex) {
+            Sex.MAN -> viewModel.womanQuestionList.size
+            Sex.WOMAN -> viewModel.manQuestionList.size
+        }
     }
 
     inner class AnswerRecyclerViewHolder(val binding: QuestionRecyclerViewItemBinding) :
@@ -66,4 +102,14 @@ class AnswerRecyclerViewAdapter(
             binding.executePendingBindings()
         }
     }
+}
+
+enum class Sex {
+    MAN,
+    WOMAN
+}
+
+enum class State {
+    ANSWER,
+    ANSWERME
 }
