@@ -62,8 +62,8 @@ class MainViewModel @Inject constructor(
     fun setQuestionStatistics(questionName: String, choiceNumber: Int, result: Int) =
         mainRepository.setQuestionStatistics(questionName, choiceNumber, result)
 
-    fun getQuestionStatistics(questionName: String, choiceNumber: Int) =
-        mainRepository.getQuestionStatistics(questionName, choiceNumber)
+    fun getQuestionStatistics(questionName: String, choiceNumber: Int, sex : String) =
+        mainRepository.getQuestionStatistics(questionName, choiceNumber, sex)
 
     fun getUserInfo(userUid: String) = try {
         mainRepository.getUserInfo(userUid)

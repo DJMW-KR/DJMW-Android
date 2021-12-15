@@ -137,9 +137,9 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         })
 
         mainViewModel.eventUserRankingInfo.observe(this,{ ranking ->
-            val array = mainViewModel.manQuestionList
             val intent = Intent(this, MainActivity::class.java)
-            intent.putParcelableArrayListExtra("questionList", array)
+            intent.putParcelableArrayListExtra("manQuestionList", mainViewModel.manQuestionList)
+            intent.putParcelableArrayListExtra("womanQuestionList", mainViewModel.womanQuestionList)
             intent.putParcelableArrayListExtra("userRankingList", mainViewModel.userRankingList)
             intent.putExtra("userRanking", ranking)
             with(mainViewModel.eventGetUserInfo.value!!){

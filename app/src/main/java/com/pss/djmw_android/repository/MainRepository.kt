@@ -14,6 +14,14 @@ class MainRepository @Inject constructor(
     private val firebaseDatabase: FirebaseDatabase,
     private val firestore: FirebaseFirestore
 ) {
+    val statisticsList = arrayListOf<String>(
+        "statistics_one",
+        "statistics_two",
+        "statistics_three",
+        "statistics_four",
+        "statistics_five"
+    )
+
     //남자 질문 가져오기
     fun getManQuestion() = firestore.collection("man_question").get()
 
@@ -22,19 +30,23 @@ class MainRepository @Inject constructor(
 
 
     //firebase rtdb에서 통계 가져오기
-    fun getQuestionStatistics(questionName: String, choiceNumber: Int): Task<DataSnapshot> {
+    fun getQuestionStatistics(
+        questionName: String,
+        choiceNumber: Int,
+        sex: String
+    ): Task<DataSnapshot> {
         return when (choiceNumber) {
-            0 -> getChoiceNumberQuestionStatistics(questionName, "statistics_one")
-            1 -> getChoiceNumberQuestionStatistics(questionName, "statistics_two")
-            2 -> getChoiceNumberQuestionStatistics(questionName, "statistics_three")
-            3 -> getChoiceNumberQuestionStatistics(questionName, "statistics_four")
-            4 -> getChoiceNumberQuestionStatistics(questionName, "statistics_five")
-            else -> getChoiceNumberQuestionStatistics(questionName, "statistics_one")
+            0 -> getChoiceNumberQuestionStatistics(questionName, "statistics_one", sex)
+            1 -> getChoiceNumberQuestionStatistics(questionName, "statistics_two", sex)
+            2 -> getChoiceNumberQuestionStatistics(questionName, "statistics_three", sex)
+            3 -> getChoiceNumberQuestionStatistics(questionName, "statistics_four", sex)
+            4 -> getChoiceNumberQuestionStatistics(questionName, "statistics_five", sex)
+            else -> getChoiceNumberQuestionStatistics(questionName, "statistics_one", sex)
         }
     }
 
     //user 정보 가져오기
-    fun getUserInfo(userUid : String) = firestore.collection("userInfo").document(userUid).get()
+    fun getUserInfo(userUid: String) = firestore.collection("userInfo").document(userUid).get()
 
     //firebase rtdb의 통계 값에 +1하기
     fun setQuestionStatistics(questionName: String, choiceNumber: Int, result: Int): Task<Void> {
@@ -49,12 +61,14 @@ class MainRepository @Inject constructor(
     }
 
     //랭킹 정보 가져오기
-    fun userRankingInfo() = firestore.collection("userInfo").orderBy("score", Query.Direction.DESCENDING).get()
+    fun userRankingInfo() =
+        firestore.collection("userInfo").orderBy("score", Query.Direction.DESCENDING).get()
 
     private fun setChoiceQuestionStatistics(questionName: String, choice: String, result: Int) =
         firebaseDatabase.reference.child("question").child(questionName).child(choice)
             .setValue(result)
 
-    private fun getChoiceNumberQuestionStatistics(questionName: String, num: String) =
-        firebaseDatabase.reference.child("question").child(questionName).child(num).get()
+    private fun getChoiceNumberQuestionStatistics(questionName: String, num: String, sex: String) =
+        if (sex == "man") firebaseDatabase.reference.child("man_question").child(questionName).child(num).get()
+        else firebaseDatabase.reference.child("woman_question").child(questionName).child(num).get()
 }

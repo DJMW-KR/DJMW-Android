@@ -1,6 +1,7 @@
 package com.pss.djmw_android.view.main.question.adapter
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -61,39 +62,87 @@ class OrderBottomDialogFragment(val itemClick: (Int) -> Unit) :
         }
         val holder = viewModel.questionItemPosition
         try {
-            viewModel.getQuestionStatistics(viewModel.manQuestionList[holder].question, num)
-                .addOnSuccessListener {
+            when (viewModel.eventGetUserInfo.value?.sex) {
+                "man" -> {
+                    viewModel.getQuestionStatistics(
+                        viewModel.manQuestionList[holder].question,
+                        num,
+                        viewModel.eventGetUserInfo.value!!.sex
+                    )
+                        .addOnSuccessListener {
 
-                    //가져온 value 가 null 인지 체크 => 질문이 rtdb 와 fireStore 에 잘 들어있는지 확인
-                    if (it.value != null) {
+                            //가져온 value 가 null 인지 체크 => 질문이 rtdb 와 fireStore 에 잘 들어있는지 확인
+                            if (it.value != null) {
 
-                        //불러온 참여한 사람에 +1해서 다시 저장
-                        val plusResult = it.value.toString().toInt() + 1
-                        viewModel.setQuestionStatistics(
-                            viewModel.manQuestionList[holder].question,
-                            num,
-                            plusResult
-                        )
-                            .addOnSuccessListener {
-                                Toast.makeText(
-                                    requireContext(),
-                                    "성공적으로 반영되었습니다!",
-                                    Toast.LENGTH_SHORT
+                                //불러온 참여한 사람에 +1해서 다시 저장
+                                val plusResult = it.value.toString().toInt() + 1
+                                viewModel.setQuestionStatistics(
+                                    viewModel.manQuestionList[holder].question,
+                                    num,
+                                    plusResult
                                 )
-                                    .show()
-                                dialog?.dismiss()
-                            }
-                            .addOnFailureListener {
+                                    .addOnSuccessListener {
+                                        Toast.makeText(
+                                            requireContext(),
+                                            "성공적으로 반영되었습니다!",
+                                            Toast.LENGTH_SHORT
+                                        )
+                                            .show()
+                                        dialog?.dismiss()
+                                    }
+                                    .addOnFailureListener {
+                                        error()
+                                    }
+
+                            } else {
                                 error()
                             }
+                        }
+                        .addOnFailureListener {
+                            error()
+                        }
+                }
+                "woman" ->{
+                    viewModel.getQuestionStatistics(
+                        viewModel.womanQuestionList[holder].question,
+                        num,
+                        viewModel.eventGetUserInfo.value!!.sex
+                    )
+                        .addOnSuccessListener {
 
-                    } else {
-                        error()
-                    }
+                            //가져온 value 가 null 인지 체크 => 질문이 rtdb 와 fireStore 에 잘 들어있는지 확인
+                            if (it.value != null) {
+
+                                //불러온 참여한 사람에 +1해서 다시 저장
+                                val plusResult = it.value.toString().toInt() + 1
+                                viewModel.setQuestionStatistics(
+                                    viewModel.womanQuestionList[holder].question,
+                                    num,
+                                    plusResult
+                                )
+                                    .addOnSuccessListener {
+                                        Toast.makeText(
+                                            requireContext(),
+                                            "성공적으로 반영되었습니다!",
+                                            Toast.LENGTH_SHORT
+                                        )
+                                            .show()
+                                        dialog?.dismiss()
+                                    }
+                                    .addOnFailureListener {
+                                        error()
+                                    }
+
+                            } else {
+                                error()
+                            }
+                        }
+                        .addOnFailureListener {
+                            error()
+                        }
                 }
-                .addOnFailureListener {
-                    error()
-                }
+            }
+
         } catch (e: Exception) {
             error()
         }
@@ -112,18 +161,36 @@ class OrderBottomDialogFragment(val itemClick: (Int) -> Unit) :
     private fun initText() {
         val holder = viewModel.questionItemPosition
         try {
-            binding.question1.text = viewModel.manQuestionList[holder].answer_one
-            binding.question2.text = viewModel.manQuestionList[holder].answer_two
-            binding.question3.text = viewModel.manQuestionList[holder].answer_three
-            binding.question4.text = viewModel.manQuestionList[holder].answer_four
-            binding.question5.text = viewModel.manQuestionList[holder].answer_five
-
+            Log.d("로그","바텀시트 유저정보 : ${viewModel.eventGetUserInfo.value?.sex}")
+            when(viewModel.eventGetUserInfo.value?.sex){
+                "man" ->{
+                    Log.d("로그","여기 man")
+                    with(viewModel.manQuestionList[holder]){
+                        binding.question1.text = this.answer_one
+                        binding.question2.text = this.answer_two
+                        binding.question3.text = this.answer_three
+                        binding.question4.text = this.answer_four
+                        binding.question5.text = this.answer_five
+                    }
+                }
+                "woman" ->{
+                    Log.d("로그","여기 woman")
+                    Log.d("로그","woman list : ${viewModel.womanQuestionList[0]}")
+                    with(viewModel.womanQuestionList[holder]){
+                        binding.question1.text = this.answer_one
+                        binding.question2.text = this.answer_two
+                        binding.question3.text = this.answer_three
+                        binding.question4.text = this.answer_four
+                        binding.question5.text = this.answer_five
+                    }
+                }
+            }
         } catch (e: Exception) {
             Toast.makeText(requireContext(), "질문을 받아오는데 오류가 발생했습니다", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun setEnabled(){
+    private fun setEnabled() {
         binding.question1.isEnabled = false
         binding.question2.isEnabled = false
         binding.question3.isEnabled = false
