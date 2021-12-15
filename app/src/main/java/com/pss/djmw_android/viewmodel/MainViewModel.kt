@@ -4,23 +4,25 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.firestore.QuerySnapshot
 import com.pss.djmw_android.data.model.Question
 import com.pss.djmw_android.data.model.UserInfo
 import com.pss.djmw_android.repository.MainRepository
 import com.pss.djmw_android.widget.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import java.io.EOFException
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val mainRepository: MainRepository
 ) : ViewModel() {
-    //가져온 질문 정보
-    val eventGetQuestion: LiveData<Boolean> get() = _eventGetQuestion
-    private val _eventGetQuestion = SingleLiveEvent<Boolean>()
+    //가져온 남자 질문 정보
+    val eventGetManQuestion: LiveData<Boolean> get() = _eventGetManQuestion
+    private val _eventGetManQuestion = SingleLiveEvent<Boolean>()
+
+    //가져온 남자 질문 정보
+    val eventGetWomanQuestion: LiveData<Boolean> get() = _eventGetWomanQuestion
+    private val _eventGetWomanQuestion = SingleLiveEvent<Boolean>()
 
     //가져온 유저 정보
     val eventGetUserInfo: LiveData<UserInfo> get() = _eventGetUserInfo
@@ -38,8 +40,11 @@ class MainViewModel @Inject constructor(
     val eventUserRankingInfo: LiveData<Int> get() = _eventUserRankingInfo
     private val _eventUserRankingInfo = SingleLiveEvent<Int>()
 
-    //가져온 질문 값
-    var questionList = arrayListOf<Question>()
+    //가져온 남자 질문 값
+    var manQuestionList = arrayListOf<Question>()
+
+    //가져온 여자 질문 값
+    var womanQuestionList = arrayListOf<Question>()
 
     //가져온 사용자 정보 score값 높은 순서대로
     var userRankingList = arrayListOf<UserInfo>()
@@ -48,11 +53,11 @@ class MainViewModel @Inject constructor(
     var questionItemPosition = 0
 
 
-    fun setUserRankingInfo(content : Int) = _eventUserRankingInfo.postValue(content)
+    fun setUserRankingInfo(content: Int) = _eventUserRankingInfo.postValue(content)
 
-    fun setEventGetUserInfo(content : UserInfo) = _eventGetUserInfo.postValue(content)
+    fun setEventGetUserInfo(content: UserInfo) = _eventGetUserInfo.postValue(content)
 
-    fun setActionView(content : Boolean) = _eventActionView.postValue(content)
+    fun setActionView(content: Boolean) = _eventActionView.postValue(content)
 
     fun setQuestionStatistics(questionName: String, choiceNumber: Int, result: Int) =
         mainRepository.setQuestionStatistics(questionName, choiceNumber, result)
@@ -74,14 +79,14 @@ class MainViewModel @Inject constructor(
 
     fun getUserRankingInfo() = mainRepository.userRankingInfo()
         .addOnSuccessListener {
-            for (item in it.documents){
-                Log.d("로그","가져온 랭킹 정보 : $item")
+            for (item in it.documents) {
+                Log.d("로그", "가져온 랭킹 정보 : $item")
                 userRankingList.add(item.toObject(UserInfo::class.java)!!)
             }
-            for (item in 0..userRankingList.size){
+            for (item in 0..userRankingList.size) {
                 //사용자 id
-                if (_eventGetUserInfo.value?.userId == userRankingList[item].userId){
-                    _eventUserRankingInfo.postValue(item+1)
+                if (_eventGetUserInfo.value?.userId == userRankingList[item].userId) {
+                    _eventUserRankingInfo.postValue(item + 1)
                     break
                 }
             }
@@ -90,15 +95,42 @@ class MainViewModel @Inject constructor(
             _eventError.postValue(2)
         }
 
-    fun getQuestion() = try {
-        mainRepository.getQuestion()
+    fun getManQuestion() = try {
+        mainRepository.getManQuestion()
             .addOnSuccessListener {
                 viewModelScope.launch {
                     for (item in it.documents) {
-                        questionList.add(item.toObject(Question::class.java)!!)
+                        manQuestionList.add(item.toObject(Question::class.java)!!)
                     }
                 }
-                _eventGetQuestion.postValue(true)
+                _eventGetManQuestion.postValue(true)
+
+                /*   Log.d("TAG","${it.documents[0]}")
+                   //_eventGetQuestion.postValue(it)
+                   for (document in it) {
+                       for (key in 0 until document.data.keys.size){
+
+                           Log.d("TAG","getQuestion : ${document.data.get(key)}")
+                       }
+                       //Log.d("TAG","getQuestion : ${document.id}, ${document.data.keys}, ${document.data.values}")
+                   }*/
+            }
+            .addOnFailureListener {
+                _eventError.postValue(1)
+            }
+    } catch (e: Exception) {
+        Log.e("TAG", "getQuestion 메서드 오류 : $e")
+    }
+
+    fun getWomanQuestion() = try {
+        mainRepository.getWomanQuestion()
+            .addOnSuccessListener {
+                viewModelScope.launch {
+                    for (item in it.documents) {
+                        womanQuestionList.add(item.toObject(Question::class.java)!!)
+                    }
+                }
+                _eventGetWomanQuestion.postValue(true)
 
                 /*   Log.d("TAG","${it.documents[0]}")
                    //_eventGetQuestion.postValue(it)

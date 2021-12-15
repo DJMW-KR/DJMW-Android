@@ -14,7 +14,12 @@ class MainRepository @Inject constructor(
     private val firebaseDatabase: FirebaseDatabase,
     private val firestore: FirebaseFirestore
 ) {
-    fun getQuestion() = firestore.collection("question").get()
+    //남자 질문 가져오기
+    fun getManQuestion() = firestore.collection("man_question").get()
+
+    //여자 질문 가져오기
+    fun getWomanQuestion() = firestore.collection("woman_question").get()
+
 
     //firebase rtdb에서 통계 가져오기
     fun getQuestionStatistics(questionName: String, choiceNumber: Int): Task<DataSnapshot> {

@@ -1,11 +1,9 @@
 package com.pss.djmw_android.view.main.question.adapter
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
@@ -63,7 +61,7 @@ class OrderBottomDialogFragment(val itemClick: (Int) -> Unit) :
         }
         val holder = viewModel.questionItemPosition
         try {
-            viewModel.getQuestionStatistics(viewModel.questionList[holder].question, num)
+            viewModel.getQuestionStatistics(viewModel.manQuestionList[holder].question, num)
                 .addOnSuccessListener {
 
                     //가져온 value 가 null 인지 체크 => 질문이 rtdb 와 fireStore 에 잘 들어있는지 확인
@@ -72,7 +70,7 @@ class OrderBottomDialogFragment(val itemClick: (Int) -> Unit) :
                         //불러온 참여한 사람에 +1해서 다시 저장
                         val plusResult = it.value.toString().toInt() + 1
                         viewModel.setQuestionStatistics(
-                            viewModel.questionList[holder].question,
+                            viewModel.manQuestionList[holder].question,
                             num,
                             plusResult
                         )
@@ -114,11 +112,11 @@ class OrderBottomDialogFragment(val itemClick: (Int) -> Unit) :
     private fun initText() {
         val holder = viewModel.questionItemPosition
         try {
-            binding.question1.text = viewModel.questionList[holder].answer_one
-            binding.question2.text = viewModel.questionList[holder].answer_two
-            binding.question3.text = viewModel.questionList[holder].answer_three
-            binding.question4.text = viewModel.questionList[holder].answer_four
-            binding.question5.text = viewModel.questionList[holder].answer_five
+            binding.question1.text = viewModel.manQuestionList[holder].answer_one
+            binding.question2.text = viewModel.manQuestionList[holder].answer_two
+            binding.question3.text = viewModel.manQuestionList[holder].answer_three
+            binding.question4.text = viewModel.manQuestionList[holder].answer_four
+            binding.question5.text = viewModel.manQuestionList[holder].answer_five
 
         } catch (e: Exception) {
             Toast.makeText(requireContext(), "질문을 받아오는데 오류가 발생했습니다", Toast.LENGTH_SHORT).show()

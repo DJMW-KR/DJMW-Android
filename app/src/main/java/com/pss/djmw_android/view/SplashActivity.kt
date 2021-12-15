@@ -128,12 +128,16 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
     private fun observeViewModel() {
         //Splash 값 가져오는 로직 순서 = getUserInfo -> getQuestion -> getUserRankingInfo
 
-        mainViewModel.eventGetQuestion.observe(this, {
+        mainViewModel.eventGetManQuestion.observe(this, {
+            mainViewModel.getWomanQuestion()
+        })
+
+        mainViewModel.eventGetWomanQuestion.observe(this, {
             getUserRankingInfo()
         })
 
         mainViewModel.eventUserRankingInfo.observe(this,{ ranking ->
-            val array = mainViewModel.questionList
+            val array = mainViewModel.manQuestionList
             val intent = Intent(this, MainActivity::class.java)
             intent.putParcelableArrayListExtra("questionList", array)
             intent.putParcelableArrayListExtra("userRankingList", mainViewModel.userRankingList)
@@ -159,7 +163,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
 
         mainViewModel.eventGetUserInfo.observe(this, {
             //fireStore에서 질문 받아오기
-            mainViewModel.getQuestion()
+            mainViewModel.getManQuestion()
         })
 
         mainViewModel.eventError.observe(this, {

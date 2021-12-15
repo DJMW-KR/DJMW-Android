@@ -3,7 +3,6 @@ package com.pss.djmw_android.view.main.question.adapter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
@@ -36,8 +35,8 @@ class AnswerRecyclerViewAdapter(
     }
 
     override fun onBindViewHolder(holder: AnswerRecyclerViewHolder, position: Int) {
-        Log.d("TAG", "AnswerRecyclerViewAdapter안 questionList : ${viewModel.questionList}")
-        holder.bind(viewModel.questionList[position])
+        Log.d("TAG", "AnswerRecyclerViewAdapter안 questionList : ${viewModel.manQuestionList}")
+        holder.bind(viewModel.manQuestionList[position])
 
         //item 을 킬릭시 바텀시트 표시
         holder.binding.itemFrame.setOnClickListener {
@@ -57,7 +56,7 @@ class AnswerRecyclerViewAdapter(
     }
 
     override fun getItemCount(): Int {
-        return viewModel.questionList.size
+        return viewModel.manQuestionList.size
     }
 
     inner class AnswerRecyclerViewHolder(val binding: QuestionRecyclerViewItemBinding) :

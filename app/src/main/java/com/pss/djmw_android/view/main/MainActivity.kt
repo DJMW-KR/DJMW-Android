@@ -29,7 +29,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private fun initGetValues() {
         mainViewModel.userRankingList =
             intent.getParcelableArrayListExtra<UserInfo>("userRankingList") as ArrayList<UserInfo>
-        mainViewModel.questionList =
+        mainViewModel.manQuestionList =
             intent.getParcelableArrayListExtra<Question>("questionList") as ArrayList<Question>
         mainViewModel.setUserRankingInfo(intent.getIntExtra("userRanking", 9999))
     }

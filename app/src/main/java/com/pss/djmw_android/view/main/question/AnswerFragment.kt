@@ -19,7 +19,7 @@ class AnswerFragment : BaseFragment<FragmentAnswerBinding>(R.layout.fragment_ans
     }
 
     private fun initRecyclerView() {
-        Log.d("TAG","AnswerFragment initRecyclerView 메서드 호출 : ${mainViewModel.questionList.size}")
+        Log.d("TAG","AnswerFragment initRecyclerView 메서드 호출 : ${mainViewModel.manQuestionList.size}")
         binding.answerRecyclerView.showVertical(requireContext())
         binding.answerRecyclerView.adapter = AnswerRecyclerViewAdapter(mainViewModel, this)
     }
