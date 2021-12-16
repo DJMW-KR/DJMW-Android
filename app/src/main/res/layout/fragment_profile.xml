@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="fragment"
+            type="com.pss.djmw_android.view.main.ProfileFragment" />
     </data>
 
     <RelativeLayout
@@ -156,9 +158,11 @@
 
 
                 <TextView
+                    android:id="@+id/app_guide"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
+                    android:onClick="@{fragment::clickAppGuideBtn}"
                     android:background="@drawable/profile_btn"
                     android:textColor="@color/black"
                     android:fontFamily="@font/noto_sans_kr_medium"

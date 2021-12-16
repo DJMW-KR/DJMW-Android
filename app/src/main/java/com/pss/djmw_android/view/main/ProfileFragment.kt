@@ -6,6 +6,9 @@ import com.pss.djmw_android.databinding.FragmentProfileBinding
 import com.pss.djmw_android.viewmodel.MainViewModel
 
 import android.animation.ValueAnimator
+import android.content.Intent
+import android.net.Uri
+import android.view.View
 
 import android.widget.TextView
 import com.pss.djmw_android.R
@@ -16,7 +19,17 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
 
 
     override fun init() {
+        binding.fragment = this
         initText()
+    }
+
+    fun clickAppGuideBtn(view: View) {
+        startActivity(
+            Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://dolomite-sceptre-401.notion.site/296fcd6b77984184973451b682fa27ae")
+            )
+        )
     }
 
     private fun initText() {
