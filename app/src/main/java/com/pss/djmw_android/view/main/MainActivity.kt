@@ -13,6 +13,7 @@ import com.pss.djmw_android.databinding.ActivityMainBinding
 import com.pss.djmw_android.viewmodel.MainViewModel
 import com.pss.djmw_android.viewmodel.PostViewModel
 import com.pss.djmw_android.widget.extension.setVisibility
+import com.pss.djmw_android.widget.utils.Utils
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -19,6 +19,8 @@ import com.pss.djmw_android.view.signin.SignInActivity
 import com.pss.djmw_android.viewmodel.MainViewModel
 import com.pss.djmw_android.viewmodel.SplashViewModel
 import com.pss.djmw_android.widget.extension.startActivityWithFinish
+import com.pss.djmw_android.widget.utils.Utils
+import com.pss.djmw_android.widget.utils.Utils.checkSdkVersion
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -33,7 +35,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
     private val appVersion = "1.0.0"
 
     override fun init() {
-        checkSdkVersion()
+        Utils.checkSdkVersion(this)
         checkVersion()
             .addOnSuccessListener {
                 if (it.value == appVersion) {
@@ -96,34 +98,9 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
 
     private fun startSignIn() = this.startActivityWithFinish(this, SignInActivity::class.java)
 
-    private fun checkSdkVersion() {
-        if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 21) {
-            setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, true)
-        }
-        if (Build.VERSION.SDK_INT >= 19) {
-            window.decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-        }
-        if (Build.VERSION.SDK_INT >= 21) {
-            setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
-            window.statusBarColor = Color.TRANSPARENT
-        }
-    }
-
     private fun getUserInfo(userUid: String) = mainViewModel.getUserInfo(userUid)
 
     private fun getUserRankingInfo() = mainViewModel.getUserRankingInfo()
-
-    private fun setWindowFlag(bits: Int, on: Boolean) {
-        val win = window
-        val winParams = win.attributes
-        if (on) {
-            winParams.flags = winParams.flags or bits
-        } else {
-            winParams.flags = winParams.flags and bits.inv()
-        }
-        win.attributes = winParams
-    }
 
     private fun observeViewModel() {
         //Splash 값 가져오는 로직 순서 = getUserInfo -> getQuestion -> getUserRankingInfo
