@@ -9,6 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="#FAFAFA"
         android:layout_height="match_parent"
         tools:context=".view.main.question.QuestionFragment">
 
@@ -99,7 +100,7 @@
                 android:layout_height="0dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:background="@color/white"
+                android:background="#FAFAFA"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

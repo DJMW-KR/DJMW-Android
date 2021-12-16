@@ -12,6 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#FAFAFA"
         tools:context=".view.main.post.PostFragment">
 
         <TextView
@@ -56,6 +57,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/post_recycler_view"
                 android:layout_height="0dp"
+                android:background="#FAFAFA"
                 android:layout_width="match_parent"
                 />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

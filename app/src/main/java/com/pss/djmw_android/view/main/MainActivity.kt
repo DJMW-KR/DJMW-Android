@@ -1,5 +1,6 @@
 package com.pss.djmw_android.view.main
 
+import android.graphics.Color
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.navigation.fragment.findNavController
@@ -12,6 +13,7 @@ import com.pss.djmw_android.data.model.UserInfo
 import com.pss.djmw_android.databinding.ActivityMainBinding
 import com.pss.djmw_android.viewmodel.MainViewModel
 import com.pss.djmw_android.viewmodel.PostViewModel
+import com.pss.djmw_android.widget.extension.setStatusBarColor
 import com.pss.djmw_android.widget.extension.setVisibility
 import com.pss.djmw_android.widget.utils.Utils
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,6 +25,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
 
     override fun init() {
+        this.setStatusBarColor(Color.parseColor("#FAFAFA"))
         observeViewModel()
         initGetValues()
     }
