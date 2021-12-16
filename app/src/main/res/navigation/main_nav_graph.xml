@@ -26,9 +26,13 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.pss.djmw_android.view.main.ProfileFragment"
+        android:name="com.pss.djmw_android.view.main.profile.ProfileFragment"
         tools:layout="@layout/fragment_profile"
-        android:label="ProfileFragment" />
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_setInquireFragment"
+            app:destination="@id/setInquireFragment" />
+    </fragment>
     <fragment
         android:id="@+id/setPostFragment"
         tools:layout="@layout/fragment_set_post"
@@ -38,5 +42,10 @@
             android:id="@+id/action_setPostFragment_to_postFragment"
             app:destination="@id/postFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/setInquireFragment"
+        tools:layout="@layout/fragment_set_inquire"
+        android:name="com.pss.djmw_android.view.main.profile.SetInquireFragment"
+        android:label="SetInquireFragment" />
 
 </navigation>

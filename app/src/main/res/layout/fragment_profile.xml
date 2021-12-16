@@ -5,7 +5,7 @@
     <data>
         <variable
             name="fragment"
-            type="com.pss.djmw_android.view.main.ProfileFragment" />
+            type="com.pss.djmw_android.view.main.profile.ProfileFragment" />
     </data>
 
     <RelativeLayout
@@ -179,7 +179,7 @@
                     android:layout_marginTop="@dimen/profile_btn_line"
                     android:background="@drawable/profile_btn"
                     android:textColor="@color/black"
-
+                    android:onClick="@{fragment::clickUserInquireBtn}"
                     android:fontFamily="@font/noto_sans_kr_medium"
                     android:gravity="left|center_vertical"
                     android:includeFontPadding="false"

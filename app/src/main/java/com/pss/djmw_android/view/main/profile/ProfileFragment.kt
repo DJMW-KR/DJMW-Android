@@ -1,17 +1,17 @@
-package com.pss.djmw_android.view.main
+package com.pss.djmw_android.view.main.profile
 
 import androidx.fragment.app.activityViewModels
 import com.pss.djmw_android.base.BaseFragment
-import com.pss.djmw_android.databinding.FragmentProfileBinding
 import com.pss.djmw_android.viewmodel.MainViewModel
-
 import android.animation.ValueAnimator
 import android.content.Intent
 import android.net.Uri
 import android.view.View
-
 import android.widget.TextView
+import androidx.navigation.fragment.findNavController
 import com.pss.djmw_android.R
+import com.pss.djmw_android.databinding.FragmentProfileBinding
+import com.pss.djmw_android.viewmodel.ProfileViewModel
 
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_profile) {
@@ -30,6 +30,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
                 Uri.parse("https://dolomite-sceptre-401.notion.site/296fcd6b77984184973451b682fa27ae")
             )
         )
+    }
+
+    fun clickUserInquireBtn(view: View){
+        mainViewModel.setActionView(false)
+        this.findNavController().navigate(R.id.action_profileFragment_to_setInquireFragment)
     }
 
     private fun initText() {
