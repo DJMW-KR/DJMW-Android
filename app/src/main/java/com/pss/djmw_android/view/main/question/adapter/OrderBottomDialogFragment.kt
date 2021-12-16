@@ -85,13 +85,7 @@ class OrderBottomDialogFragment(val itemClick: (Int) -> Unit, val state: State, 
                                         viewModel.eventGetUserInfo.value!!.sex
                                     )
                                         .addOnSuccessListener {
-                                            Toast.makeText(
-                                                requireContext(),
-                                                "성공적으로 반영되었습니다!",
-                                                Toast.LENGTH_SHORT
-                                            )
-                                                .show()
-                                            dialog?.dismiss()
+                                            success()
                                         }
                                         .addOnFailureListener {
                                             error()
@@ -125,13 +119,7 @@ class OrderBottomDialogFragment(val itemClick: (Int) -> Unit, val state: State, 
                                         viewModel.eventGetUserInfo.value!!.sex
                                     )
                                         .addOnSuccessListener {
-                                            Toast.makeText(
-                                                requireContext(),
-                                                "성공적으로 반영되었습니다!",
-                                                Toast.LENGTH_SHORT
-                                            )
-                                                .show()
-                                            dialog?.dismiss()
+                                            success()
                                         }
                                         .addOnFailureListener {
                                             error()
@@ -170,13 +158,7 @@ class OrderBottomDialogFragment(val itemClick: (Int) -> Unit, val state: State, 
                                         viewModel.eventGetUserInfo.value!!.sex
                                     )
                                         .addOnSuccessListener {
-                                            Toast.makeText(
-                                                requireContext(),
-                                                "성공적으로 반영되었습니다!",
-                                                Toast.LENGTH_SHORT
-                                            )
-                                                .show()
-                                            dialog?.dismiss()
+                                            success()
                                         }
                                         .addOnFailureListener {
                                             error()
@@ -211,13 +193,7 @@ class OrderBottomDialogFragment(val itemClick: (Int) -> Unit, val state: State, 
                                         viewModel.eventGetUserInfo.value!!.sex
                                     )
                                         .addOnSuccessListener {
-                                            Toast.makeText(
-                                                requireContext(),
-                                                "성공적으로 반영되었습니다!",
-                                                Toast.LENGTH_SHORT
-                                            )
-                                                .show()
-                                            dialog?.dismiss()
+                                            success()
                                         }
                                         .addOnFailureListener {
                                             error()
@@ -241,13 +217,30 @@ class OrderBottomDialogFragment(val itemClick: (Int) -> Unit, val state: State, 
     }
 
     private fun error() {
+        viewModel.questionClickEvent = false
         Toast.makeText(requireContext(), "예기치 않은 오류가 발생했습니다", Toast.LENGTH_SHORT).show()
+        dialog?.dismiss()
+    }
+
+    private fun success(){
+        viewModel.questionClickEvent = false
+        Toast.makeText(
+            requireContext(),
+            "성공적으로 반영되었습니다!",
+            Toast.LENGTH_SHORT
+        )
+            .show()
         dialog?.dismiss()
     }
 
     override fun onResume() {
         super.onResume()
         initText()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.questionClickEvent = false
     }
 
     private fun initAnswerTxt(holder: Int, sex: Sex) {

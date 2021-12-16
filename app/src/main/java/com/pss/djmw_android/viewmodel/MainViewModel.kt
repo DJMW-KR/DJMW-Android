@@ -40,6 +40,9 @@ class MainViewModel @Inject constructor(
     val eventUserRankingInfo: LiveData<Int> get() = _eventUserRankingInfo
     private val _eventUserRankingInfo = SingleLiveEvent<Int>()
 
+    //질문 더블 클릭 방지
+    var questionClickEvent = false
+
     //가져온 남자 질문 값
     var manQuestionList = arrayListOf<Question>()
 
@@ -65,10 +68,10 @@ class MainViewModel @Inject constructor(
     fun setAnswerStatistics(questionName: String, choiceNumber: Int, result: Int, sex: String) =
         mainRepository.setAnswerStatistics(questionName, choiceNumber, result, sex)
 
-    fun getQuestionStatistics(questionName: String, choiceNumber: Int, sex : String) =
+    fun getQuestionStatistics(questionName: String, choiceNumber: Int, sex: String) =
         mainRepository.getQuestionStatistics(questionName, choiceNumber, sex)
 
-    fun getAnswerStatistics(questionName: String, choiceNumber: Int, sex : String) =
+    fun getAnswerStatistics(questionName: String, choiceNumber: Int, sex: String) =
         mainRepository.getAnswerStatistics(questionName, choiceNumber, sex)
 
     fun getUserInfo(userUid: String) = try {

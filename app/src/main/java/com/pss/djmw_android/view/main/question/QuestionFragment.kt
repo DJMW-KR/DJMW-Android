@@ -1,6 +1,5 @@
 package com.pss.djmw_android.view.main.question
 
-import android.graphics.Color
 import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
@@ -8,6 +7,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.pss.djmw_android.R
 import com.pss.djmw_android.base.BaseFragment
 import com.pss.djmw_android.databinding.FragmentQuestionBinding
+import com.pss.djmw_android.view.main.question.adapter.QuestionViewPagerAdapter
 import com.pss.djmw_android.viewmodel.MainViewModel
 import com.pss.djmw_android.widget.extension.setVisibility
 import kotlinx.coroutines.CoroutineScope
@@ -55,7 +55,7 @@ class QuestionFragment : BaseFragment<FragmentQuestionBinding>(R.layout.fragment
     }
 
     private fun initViewPager(){
-        val adapter = QuestionAdapter(childFragmentManager, lifecycle)
+        val adapter = QuestionViewPagerAdapter(childFragmentManager, lifecycle)
         binding.viewPager.adapter = adapter
     }
 

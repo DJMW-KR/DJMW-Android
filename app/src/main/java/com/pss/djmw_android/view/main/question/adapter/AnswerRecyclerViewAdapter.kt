@@ -50,15 +50,19 @@ class AnswerRecyclerViewAdapter(
 
         //item 을 킬릭시 바텀시트 표시
         holder.binding.itemFrame.setOnClickListener {
-            viewModel.questionItemPosition = position
-            val orderBottomDialogFragment: OrderBottomDialogFragment = OrderBottomDialogFragment( {
-                /*Toast.makeText(fragment.requireContext(), "성공적으로 반영되었습니다!", Toast.LENGTH_SHORT)
-                    .show()*/
-            }, state = state, sex = sex)
-            orderBottomDialogFragment.show(
-                fragment.requireActivity().supportFragmentManager,
-                orderBottomDialogFragment.tag
-            )
+            if (!viewModel.questionClickEvent) {
+                viewModel.questionClickEvent = true
+                viewModel.questionItemPosition = position
+                val orderBottomDialogFragment: OrderBottomDialogFragment =
+                    OrderBottomDialogFragment({
+                        /*Toast.makeText(fragment.requireContext(), "성공적으로 반영되었습니다!", Toast.LENGTH_SHORT)
+                            .show()*/
+                    }, state = state, sex = sex)
+                orderBottomDialogFragment.show(
+                    fragment.requireActivity().supportFragmentManager,
+                    orderBottomDialogFragment.tag
+                )
+            }
         }
     }
 
@@ -69,16 +73,19 @@ class AnswerRecyclerViewAdapter(
         }
         //item 을 킬릭시 바텀시트 표시
         holder.binding.itemFrame.setOnClickListener {
-            viewModel.questionItemPosition = position
-            val orderBottomDialogFragment: OrderBottomDialogFragment = OrderBottomDialogFragment ({
-                /*Toast.makeText(fragment.requireContext(), "성공적으로 반영되었습니다!", Toast.LENGTH_SHORT)
-                    .show()*/
-            }, state = state, sex = sex)
-            orderBottomDialogFragment.show(
-                fragment.requireActivity().supportFragmentManager,
-                orderBottomDialogFragment.tag
-            )
-
+            if (!viewModel.questionClickEvent) {
+                viewModel.questionClickEvent = true
+                viewModel.questionItemPosition = position
+                val orderBottomDialogFragment: OrderBottomDialogFragment =
+                    OrderBottomDialogFragment({
+                        /*Toast.makeText(fragment.requireContext(), "성공적으로 반영되었습니다!", Toast.LENGTH_SHORT)
+                            .show()*/
+                    }, state = state, sex = sex)
+                orderBottomDialogFragment.show(
+                    fragment.requireActivity().supportFragmentManager,
+                    orderBottomDialogFragment.tag
+                )
+            }
         }
     }
 
