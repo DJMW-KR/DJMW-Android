@@ -5,11 +5,11 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class UserParticipationInfo(
-    val q1 : Boolean,
-    val q2 : Boolean,
-    val q3 : Boolean,
-    val q4 : Boolean,
-    val q5 : Boolean
+    //대답하기
+    val question: ParticipationItem,
+
+    //선택하기
+    val answer : ParticipationItem
 ) : Parcelable {
-    constructor() : this(true,true,true,true,true)
+    constructor() : this(ParticipationItem(true,true,true,true,true), ParticipationItem(true,true,true,true,true))
 }
