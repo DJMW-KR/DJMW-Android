@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.pss.djmw_android.data.model.ParticipationItem
 import com.pss.djmw_android.data.model.Question
 import com.pss.djmw_android.data.model.UserInfo
 import com.pss.djmw_android.data.model.UserParticipationInfo
@@ -29,7 +30,7 @@ class MainViewModel @Inject constructor(
     val eventGetUserInfo: LiveData<UserInfo> get() = _eventGetUserInfo
     private val _eventGetUserInfo = SingleLiveEvent<UserInfo>()
 
-    //0 = 사용자 정보 가져오기 오류, 1 = 퀴즈 가져오기 오류, 2 = 사용자 랭킹 정보 가져오기 오류
+    //0 = 사용자 정보 가져오기 오류, 1 = 퀴즈 가져오기 오류, 2 = 사용자 랭킹 정보 가져오기 오류, 3 = 질문 통계 가져오기 오류
     val eventError: LiveData<Int> get() = _eventError
     private val _eventError = SingleLiveEvent<Int>()
 
@@ -40,6 +41,10 @@ class MainViewModel @Inject constructor(
     //사용자 랭킹 정보
     val eventUserRankingInfo: LiveData<Int> get() = _eventUserRankingInfo
     private val _eventUserRankingInfo = SingleLiveEvent<Int>()
+
+    //질문 통계 정보
+    val eventQuestionParticipation: LiveData<ParticipationItem> get() = _eventQuestionParticipation
+    private val _eventQuestionParticipation = SingleLiveEvent<ParticipationItem>()
 
     //사용자 질문 참여 통계 정보
     val eventUserParticipationInfo: LiveData<UserParticipationInfo> get() = _eventUserParticipationInfo
@@ -164,4 +169,16 @@ class MainViewModel @Inject constructor(
     } catch (e: Exception) {
         Log.e("TAG", "getQuestion 메서드 오류 : $e")
     }
+
+  /*  fun getQuestionParticipation(sex: String) = mainRepository.getQuestionParticipation(sex)
+        .addOnSuccessListener {
+            _eventQuestionParticipation.postValue(it.getValue(ParticipationItem::class.java))
+        }
+        .addOnFailureListener{
+            _eventError.postValue(3)
+        }
+
+    fun setQuestionParticipation(sex: String) {
+        val plusResult = ParticipationItem()
+    }*/
 }

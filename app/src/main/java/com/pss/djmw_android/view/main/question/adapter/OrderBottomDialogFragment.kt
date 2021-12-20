@@ -16,9 +16,9 @@ import com.pss.djmw_android.viewmodel.MainViewModel
 class OrderBottomDialogFragment(val itemClick: (Int) -> Unit, val state: State, val sex: Sex) :
     BottomSheetDialogFragment() {
     private val viewModel by activityViewModels<MainViewModel>()
-
-
     private lateinit var binding: FragmentOrderBottomDialogBinding
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -63,7 +63,7 @@ class OrderBottomDialogFragment(val itemClick: (Int) -> Unit, val state: State, 
         val holder = viewModel.questionItemPosition
         try {
             //Answer 부분
-            if (state == State.ANSWER){
+            if (state == State.ANSWER) {
                 when (viewModel.eventGetUserInfo.value?.sex) {
                     "man" -> {
                         viewModel.getQuestionStatistics(
@@ -173,7 +173,7 @@ class OrderBottomDialogFragment(val itemClick: (Int) -> Unit, val state: State, 
                             }
                     }
                     "woman" -> {
-                        Log.d("로그","AnswerMe 안에 woman")
+                        Log.d("로그", "AnswerMe 안에 woman")
                         viewModel.getAnswerStatistics(
                             viewModel.womanQuestionList[holder].question,
                             num,
@@ -222,8 +222,12 @@ class OrderBottomDialogFragment(val itemClick: (Int) -> Unit, val state: State, 
         dialog?.dismiss()
     }
 
-    private fun success(){
+    private fun success() {
         viewModel.questionClickEvent = false
+        /*      if(sex == Sex.MAN){
+                  if (state == State.ANSWER)
+                      else
+              }*/
         Toast.makeText(
             requireContext(),
             "성공적으로 반영되었습니다!",

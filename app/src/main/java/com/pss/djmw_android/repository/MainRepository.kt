@@ -6,6 +6,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.pss.djmw_android.data.model.ParticipationItem
 import com.pss.djmw_android.data.model.Question
 import com.pss.djmw_android.data.model.UserInfo
 import javax.inject.Inject
@@ -160,4 +161,10 @@ class MainRepository @Inject constructor(
             Log.d("로그", "getChoiceNumberQuestionStatistics else : $questionName, $num, $sex")
             firebaseDatabase.reference.child("woman_answer").child(questionName).child(num).get()
         }
+
+    //질문(Question) 대답 인원수 통계 Get
+    fun getQuestionParticipation(sex: String) = firebaseDatabase.reference.child("questionParticipationInfo").child(sex).get()
+
+//    //질문(Question) 대답 인원수 통계 Set
+//    fun setQuestionParticipation(sex: String, content : ParticipationItem) = firebaseDatabase.reference.child("questionParticipationInfo").child(sex).setValue(content)
 }
