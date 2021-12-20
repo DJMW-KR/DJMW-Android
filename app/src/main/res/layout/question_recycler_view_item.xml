@@ -28,7 +28,7 @@
             android:textColor="#393939"
             android:textSize="23sp"
             set_question="@{data.question}"
-            app:layout_constraintEnd_toStartOf="@+id/textView6"
+            app:layout_constraintEnd_toStartOf="@+id/participation_status"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,19 +44,35 @@
             android:textSize="15sp"
             android:layout_marginTop="7dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView6"
+            app:layout_constraintEnd_toStartOf="@+id/participation_status"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/participation_status_false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/question_not_participation_box"
+            android:background="@drawable/question_participation_false_box"
             android:fontFamily="@font/noto_sans_kr_bold"
             android:includeFontPadding="false"
             android:padding="10dp"
             android:text="미참여"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/participation_status_true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:background="@drawable/question_participation_true_box"
+            android:fontFamily="@font/noto_sans_kr_bold"
+            android:includeFontPadding="false"
+            android:padding="10dp"
+            android:text=" 참  여 "
             android:textColor="@color/white"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"

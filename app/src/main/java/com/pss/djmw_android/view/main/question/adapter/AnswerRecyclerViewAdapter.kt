@@ -1,5 +1,6 @@
 package com.pss.djmw_android.view.main.question.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -9,6 +10,7 @@ import com.pss.djmw_android.R
 import com.pss.djmw_android.data.model.Question
 import com.pss.djmw_android.databinding.QuestionRecyclerViewItemBinding
 import com.pss.djmw_android.viewmodel.MainViewModel
+import com.pss.djmw_android.widget.extension.setVisibility
 
 class AnswerRecyclerViewAdapter(
     private val viewModel: MainViewModel,
@@ -37,9 +39,33 @@ class AnswerRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: AnswerRecyclerViewHolder, position: Int) {
         when (state) {
-            State.ANSWER -> StateAnswer(holder, position)
-            State.ANSWERME -> StateAnswerMe(holder, position)
+            State.ANSWER -> {
+                StateAnswer(holder, position)
+                when (position) {
+                    0 -> if (viewModel.eventUserParticipationInfo.value!!.question.q1) userParticipationTrue(holder)
+                    1 ->  if (viewModel.eventUserParticipationInfo.value!!.question.q2) userParticipationTrue(holder)
+                    2 ->  if (viewModel.eventUserParticipationInfo.value!!.question.q3) userParticipationTrue(holder)
+                    3 ->  if (viewModel.eventUserParticipationInfo.value!!.question.q4) userParticipationTrue(holder)
+                    4 ->  if (viewModel.eventUserParticipationInfo.value!!.question.q5) userParticipationTrue(holder)
+                }
+            }
+            State.ANSWERME -> {
+                StateAnswerMe(holder, position)
+                when (position) {
+                    0 -> if (viewModel.eventUserParticipationInfo.value!!.answer.q1) userParticipationTrue(holder)
+                    1 ->  if (viewModel.eventUserParticipationInfo.value!!.answer.q2) userParticipationTrue(holder)
+                    2 ->  if (viewModel.eventUserParticipationInfo.value!!.answer.q3) userParticipationTrue(holder)
+                    3 ->  if (viewModel.eventUserParticipationInfo.value!!.answer.q4) userParticipationTrue(holder)
+                    4 ->  if (viewModel.eventUserParticipationInfo.value!!.answer.q5) userParticipationTrue(holder)
+                }
+            }
         }
+    }
+
+    private fun userParticipationTrue(holder: AnswerRecyclerViewHolder) {
+        holder.binding.itemFrame.isEnabled = false
+        holder.binding.participationStatusFalse.setVisibility(false)
+        holder.binding.participationStatusTrue.setVisibility(true)
     }
 
     private fun StateAnswer(holder: AnswerRecyclerViewHolder, position: Int) {
