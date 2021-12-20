@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pss.djmw_android.data.model.Question
 import com.pss.djmw_android.data.model.UserInfo
+import com.pss.djmw_android.data.model.UserParticipationInfo
 import com.pss.djmw_android.repository.MainRepository
 import com.pss.djmw_android.widget.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -40,6 +41,10 @@ class MainViewModel @Inject constructor(
     val eventUserRankingInfo: LiveData<Int> get() = _eventUserRankingInfo
     private val _eventUserRankingInfo = SingleLiveEvent<Int>()
 
+    //사용자 질문 참여 통계 정보
+    val eventUserParticipationInfo: LiveData<UserParticipationInfo> get() = _eventUserParticipationInfo
+    private val _eventUserParticipationInfo = SingleLiveEvent<UserParticipationInfo>()
+
     //질문 더블 클릭 방지
     var questionClickEvent = false
 
@@ -59,6 +64,8 @@ class MainViewModel @Inject constructor(
     fun setUserRankingInfo(content: Int) = _eventUserRankingInfo.postValue(content)
 
     fun setEventGetUserInfo(content: UserInfo) = _eventGetUserInfo.postValue(content)
+
+    fun setEventUserParticipationInfo(content : UserParticipationInfo) = _eventUserParticipationInfo.postValue(content)
 
     fun setActionView(content: Boolean) = _eventActionView.postValue(content)
 

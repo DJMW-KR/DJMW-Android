@@ -10,6 +10,7 @@ import com.pss.djmw_android.R
 import com.pss.djmw_android.base.BaseActivity
 import com.pss.djmw_android.data.model.Question
 import com.pss.djmw_android.data.model.UserInfo
+import com.pss.djmw_android.data.model.UserParticipationInfo
 import com.pss.djmw_android.databinding.ActivityMainBinding
 import com.pss.djmw_android.viewmodel.MainViewModel
 import com.pss.djmw_android.viewmodel.PostViewModel
@@ -31,13 +32,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     }
 
     private fun initGetValues() {
-        mainViewModel.userRankingList =
-            intent.getParcelableArrayListExtra<UserInfo>("userRankingList") as ArrayList<UserInfo>
-        mainViewModel.manQuestionList =
-            intent.getParcelableArrayListExtra<Question>("manQuestionList") as ArrayList<Question>
-        mainViewModel.setUserRankingInfo(intent.getIntExtra("userRanking", 9999))
-        mainViewModel.womanQuestionList =
-            intent.getParcelableArrayListExtra<Question>("womanQuestionList") as ArrayList<Question>
+        with(mainViewModel) {
+            userRankingList =
+                intent.getParcelableArrayListExtra<UserInfo>("userRankingList") as ArrayList<UserInfo>
+            manQuestionList =
+                intent.getParcelableArrayListExtra<Question>("manQuestionList") as ArrayList<Question>
+            setUserRankingInfo(intent.getIntExtra("userRanking", 9999))
+            womanQuestionList =
+                intent.getParcelableArrayListExtra<Question>("womanQuestionList") as ArrayList<Question>
+            setEventUserParticipationInfo(intent.getParcelableExtra<UserParticipationInfo>("userParticipation")!!)
+        }
     }
 
     private fun observeViewModel() {
@@ -46,6 +50,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 true -> binding.bottomNav.setVisibility(true)
                 false -> binding.bottomNav.setVisibility(false)
             }
+        })
+
+        mainViewModel.eventUserParticipationInfo.observe(this,{
+            Log.d("로그","user참여 통계 정보 : $it")
         })
 
         mainViewModel.eventGetUserInfo.observe(this, {

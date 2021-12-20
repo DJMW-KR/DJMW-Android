@@ -103,14 +103,14 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
     private fun getUserRankingInfo() = mainViewModel.getUserRankingInfo()
 
     private fun observeViewModel() {
-        //Splash 값 가져오는 로직 순서 = getUserInfo -> getQuestion -> getUserRankingInfo
+        //Splash 값 가져오는 로직 순서 = getUserInfo -> getQuestion -> getUserParticipationInfo -> getUserRankingInfo
 
         mainViewModel.eventGetManQuestion.observe(this, {
             mainViewModel.getWomanQuestion()
         })
 
         mainViewModel.eventGetWomanQuestion.observe(this, {
-            getUserRankingInfo()
+            splashViewModel.getUserParticipationInfo(mainViewModel.eventGetUserInfo.value!!.userId)
         })
 
         mainViewModel.eventUserRankingInfo.observe(this,{ ranking ->
@@ -118,6 +118,8 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             intent.putParcelableArrayListExtra("manQuestionList", mainViewModel.manQuestionList)
             intent.putParcelableArrayListExtra("womanQuestionList", mainViewModel.womanQuestionList)
             intent.putParcelableArrayListExtra("userRankingList", mainViewModel.userRankingList)
+            intent.putExtra("userParticipation",splashViewModel.eventUserParticipationInfo.value)
+            Log.d("로그","splash activity 질문 통계 : ${splashViewModel.eventUserParticipationInfo.value}")
             intent.putExtra("userRanking", ranking)
             with(mainViewModel.eventGetUserInfo.value!!){
                 intent.putExtra(
@@ -141,6 +143,16 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         mainViewModel.eventGetUserInfo.observe(this, {
             //fireStore에서 질문 받아오기
             mainViewModel.getManQuestion()
+        })
+
+        splashViewModel.eventUserParticipationInfo.observe(this,{
+            getUserRankingInfo()
+        })
+
+        splashViewModel.eventError.observe(this,{
+            when(it){
+                0 -> shortShowToast("사용자 참여통계 정보를 가져오는데 오류가 발생했습니다")
+            }
         })
 
         mainViewModel.eventError.observe(this, {
