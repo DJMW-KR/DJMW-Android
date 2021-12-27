@@ -12,8 +12,14 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.pss.djmw_android.R
 import com.pss.djmw_android.databinding.FragmentOrderBottomDialogBinding
 import com.pss.djmw_android.viewmodel.MainViewModel
+import java.text.FieldPosition
 
-class OrderBottomDialogFragment(val itemClick: (Int) -> Unit, val state: State, val sex: Sex) :
+class OrderBottomDialogFragment(
+    val itemClick: (Int) -> Unit,
+    val state: State,
+    val sex: Sex,
+    val position: Int
+) :
     BottomSheetDialogFragment() {
     private val viewModel by activityViewModels<MainViewModel>()
     private lateinit var binding: FragmentOrderBottomDialogBinding
@@ -85,7 +91,13 @@ class OrderBottomDialogFragment(val itemClick: (Int) -> Unit, val state: State, 
                                         viewModel.eventGetUserInfo.value!!.sex
                                     )
                                         .addOnSuccessListener {
-                                            success()
+                                            viewModel.modifyUserQuestionParticipation(position = position, mode = "question",uid = viewModel.eventGetUserInfo.value!!.userId)
+                                                .addOnSuccessListener {
+                                                    success()
+                                                }
+                                                .addOnFailureListener {
+                                                    error()
+                                                }
                                         }
                                         .addOnFailureListener {
                                             error()
@@ -119,7 +131,13 @@ class OrderBottomDialogFragment(val itemClick: (Int) -> Unit, val state: State, 
                                         viewModel.eventGetUserInfo.value!!.sex
                                     )
                                         .addOnSuccessListener {
-                                            success()
+                                            viewModel.modifyUserQuestionParticipation(position = position, mode = "question",uid = viewModel.eventGetUserInfo.value!!.userId)
+                                                .addOnSuccessListener {
+                                                    success()
+                                                }
+                                                .addOnFailureListener {
+                                                    error()
+                                                }
                                         }
                                         .addOnFailureListener {
                                             error()
@@ -158,7 +176,13 @@ class OrderBottomDialogFragment(val itemClick: (Int) -> Unit, val state: State, 
                                         viewModel.eventGetUserInfo.value!!.sex
                                     )
                                         .addOnSuccessListener {
-                                            success()
+                                            viewModel.modifyUserQuestionParticipation(position = position, mode = "answer",uid = viewModel.eventGetUserInfo.value!!.userId)
+                                                .addOnSuccessListener {
+                                                    success()
+                                                }
+                                                .addOnFailureListener {
+                                                    error()
+                                                }
                                         }
                                         .addOnFailureListener {
                                             error()
@@ -193,7 +217,13 @@ class OrderBottomDialogFragment(val itemClick: (Int) -> Unit, val state: State, 
                                         viewModel.eventGetUserInfo.value!!.sex
                                     )
                                         .addOnSuccessListener {
-                                            success()
+                                            viewModel.modifyUserQuestionParticipation(position = position, mode = "answer",uid = viewModel.eventGetUserInfo.value!!.userId)
+                                                .addOnSuccessListener {
+                                                    success()
+                                                }
+                                                .addOnFailureListener {
+                                                    error()
+                                                }
                                         }
                                         .addOnFailureListener {
                                             error()

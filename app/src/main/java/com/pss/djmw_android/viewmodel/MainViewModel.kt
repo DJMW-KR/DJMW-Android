@@ -70,7 +70,8 @@ class MainViewModel @Inject constructor(
 
     fun setEventGetUserInfo(content: UserInfo) = _eventGetUserInfo.postValue(content)
 
-    fun setEventUserParticipationInfo(content : UserParticipationInfo) = _eventUserParticipationInfo.postValue(content)
+    fun setEventUserParticipationInfo(content: UserParticipationInfo) =
+        _eventUserParticipationInfo.postValue(content)
 
     fun setActionView(content: Boolean) = _eventActionView.postValue(content)
 
@@ -97,6 +98,9 @@ class MainViewModel @Inject constructor(
     } catch (e: Exception) {
 
     }
+
+    fun modifyUserQuestionParticipation(position: Int, uid: String, mode: String) =
+        mainRepository.modifyUserQuestionParticipation(position, uid, mode)
 
     fun getUserRankingInfo() = mainRepository.userRankingInfo()
         .addOnSuccessListener {
@@ -170,15 +174,15 @@ class MainViewModel @Inject constructor(
         Log.e("TAG", "getQuestion 메서드 오류 : $e")
     }
 
-  /*  fun getQuestionParticipation(sex: String) = mainRepository.getQuestionParticipation(sex)
-        .addOnSuccessListener {
-            _eventQuestionParticipation.postValue(it.getValue(ParticipationItem::class.java))
-        }
-        .addOnFailureListener{
-            _eventError.postValue(3)
-        }
+    /*  fun getQuestionParticipation(sex: String) = mainRepository.getQuestionParticipation(sex)
+          .addOnSuccessListener {
+              _eventQuestionParticipation.postValue(it.getValue(ParticipationItem::class.java))
+          }
+          .addOnFailureListener{
+              _eventError.postValue(3)
+          }
 
-    fun setQuestionParticipation(sex: String) {
-        val plusResult = ParticipationItem()
-    }*/
+      fun setQuestionParticipation(sex: String) {
+          val plusResult = ParticipationItem()
+      }*/
 }

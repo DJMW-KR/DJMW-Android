@@ -20,7 +20,8 @@ class MainRepository @Inject constructor(
         firestore.collection("man_question").orderBy("number", Query.Direction.ASCENDING).get()
 
     //여자 질문 가져오기
-    fun getWomanQuestion() = firestore.collection("woman_question").orderBy("number", Query.Direction.ASCENDING).get()
+    fun getWomanQuestion() =
+        firestore.collection("woman_question").orderBy("number", Query.Direction.ASCENDING).get()
 
     //firebase rtdb에서 통계 가져오기
     fun getQuestionStatistics(
@@ -89,6 +90,19 @@ class MainRepository @Inject constructor(
             4 -> setChoiceAnswerStatistics(questionName, "statistics_five", result, sex)
             else -> setChoiceAnswerStatistics(questionName, "statistics_one", result, sex)
         }
+    }
+
+    //사용자 질문 참여 여부 수정
+    fun modifyUserQuestionParticipation(position: Int, uid: String, mode: String): Task<Void> {
+        var sPosition = "q1"
+        when (position) {
+            0 -> sPosition = "q1"
+            1 -> sPosition = "q2"
+            2 -> sPosition = "q3"
+            3 -> sPosition = "q4"
+            4 -> sPosition = "q5"
+        }
+        return firebaseDatabase.reference.child("userParticipationInfo").child(uid).child(mode).child(sPosition).setValue(true)
     }
 
     //랭킹 정보 가져오기
