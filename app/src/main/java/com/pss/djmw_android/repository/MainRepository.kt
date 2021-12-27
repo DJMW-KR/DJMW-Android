@@ -16,10 +16,11 @@ class MainRepository @Inject constructor(
     private val firestore: FirebaseFirestore
 ) {
     //남자 질문 가져오기
-    fun getManQuestion() = firestore.collection("man_question").get()
+    fun getManQuestion() =
+        firestore.collection("man_question").orderBy("number", Query.Direction.ASCENDING).get()
 
     //여자 질문 가져오기
-    fun getWomanQuestion() = firestore.collection("woman_question").get()
+    fun getWomanQuestion() = firestore.collection("woman_question").orderBy("number", Query.Direction.ASCENDING).get()
 
     //firebase rtdb에서 통계 가져오기
     fun getQuestionStatistics(
@@ -100,7 +101,7 @@ class MainRepository @Inject constructor(
         choice: String,
         result: Int,
         sex: String
-    ) : Task<Void> {
+    ): Task<Void> {
 
         return when (sex) {
             "man" -> firebaseDatabase.reference.child("man_question").child(questionName)
@@ -123,7 +124,7 @@ class MainRepository @Inject constructor(
         choice: String,
         result: Int,
         sex: String
-    ) : Task<Void> {
+    ): Task<Void> {
 
         return when (sex) {
             "man" -> firebaseDatabase.reference.child("man_answer").child(questionName)
@@ -163,7 +164,8 @@ class MainRepository @Inject constructor(
         }
 
     //질문(Question) 대답 인원수 통계 Get
-    fun getQuestionParticipation(sex: String) = firebaseDatabase.reference.child("questionParticipationInfo").child(sex).get()
+    fun getQuestionParticipation(sex: String) =
+        firebaseDatabase.reference.child("questionParticipationInfo").child(sex).get()
 
 //    //질문(Question) 대답 인원수 통계 Set
 //    fun setQuestionParticipation(sex: String, content : ParticipationItem) = firebaseDatabase.reference.child("questionParticipationInfo").child(sex).setValue(content)
