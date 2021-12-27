@@ -2,6 +2,7 @@ package com.pss.djmw_android.view.main.post
 
 import android.content.Context
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -67,9 +68,11 @@ class SetPostFragment : BaseFragment<FragmentSetPostBinding>(R.layout.fragment_s
     }
 
     fun clickUploadBtn(view: View){
-        binding.uploadBtn.isEnabled = false
-        binding.loadingBar.setVisibility(true)
-        postViewModel.setPost(Post(binding.title.text.toString(), binding.content.text.toString(), nowTime()))
+        if (!TextUtils.isEmpty(binding.title.text.toString())&&!TextUtils.isEmpty(binding.content.text.toString())){
+            binding.uploadBtn.isEnabled = false
+            binding.loadingBar.setVisibility(true)
+            postViewModel.setPost(Post(binding.title.text.toString(), binding.content.text.toString(), nowTime()))
+        }else shortShowToast("제목 또는 내용을 입력해 주세요")
     }
 
     private fun nowTime(): String = SimpleDateFormat("yyyy.MM.dd HH시 mm분", Locale("ko", "KR")).format(Date(System.currentTimeMillis()))

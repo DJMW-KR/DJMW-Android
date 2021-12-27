@@ -1,6 +1,7 @@
 package com.pss.djmw_android.view.main.profile
 
 import android.os.Bundle
+import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -47,16 +48,18 @@ class SetInquireFragment : BaseFragment<FragmentSetInquireBinding>(R.layout.frag
     }
 
     fun clickUploadBtn(view: View) {
-        binding.uploadBtn.isEnabled = false
-        binding.loadingBar.setVisibility(true)
-        profileViewModel.setInquire(
-            Inquire(
-                mainViewModel.eventGetUserInfo.value!!.userId,
-                binding.title.text.toString(),
-                binding.content.text.toString(),
-                nowTime()
+        if (!TextUtils.isEmpty(binding.title.text.toString())&&!TextUtils.isEmpty(binding.content.text.toString())) {
+            binding.uploadBtn.isEnabled = false
+            binding.loadingBar.setVisibility(true)
+            profileViewModel.setInquire(
+                Inquire(
+                    mainViewModel.eventGetUserInfo.value!!.userId,
+                    binding.title.text.toString(),
+                    binding.content.text.toString(),
+                    nowTime()
+                )
             )
-        )
+        }else shortShowToast("필수 항목을 작성해 주세요")
     }
 
     private fun nowTime() = SimpleDateFormat("yyyy.MM.dd HH시 mm분", Locale("ko", "KR")).format(
