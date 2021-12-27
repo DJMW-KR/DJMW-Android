@@ -83,7 +83,7 @@ class AnswerRecyclerViewAdapter(
                     OrderBottomDialogFragment({
                         /*Toast.makeText(fragment.requireContext(), "성공적으로 반영되었습니다!", Toast.LENGTH_SHORT)
                             .show()*/
-                    }, state = state, sex = sex, position = position)
+                    }, state = state, sex = sex, position = position, holder = holder)
                 orderBottomDialogFragment.show(
                     fragment.requireActivity().supportFragmentManager,
                     orderBottomDialogFragment.tag
@@ -106,7 +106,7 @@ class AnswerRecyclerViewAdapter(
                     OrderBottomDialogFragment({
                         /*Toast.makeText(fragment.requireContext(), "성공적으로 반영되었습니다!", Toast.LENGTH_SHORT)
                             .show()*/
-                    }, state = state, sex = sex, position = position)
+                    }, state = state, sex = sex, position = position, holder = holder)
                 orderBottomDialogFragment.show(
                     fragment.requireActivity().supportFragmentManager,
                     orderBottomDialogFragment.tag

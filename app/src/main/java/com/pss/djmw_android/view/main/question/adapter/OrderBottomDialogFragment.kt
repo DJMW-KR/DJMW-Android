@@ -12,13 +12,15 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.pss.djmw_android.R
 import com.pss.djmw_android.databinding.FragmentOrderBottomDialogBinding
 import com.pss.djmw_android.viewmodel.MainViewModel
+import com.pss.djmw_android.widget.extension.setVisibility
 import java.text.FieldPosition
 
 class OrderBottomDialogFragment(
     val itemClick: (Int) -> Unit,
     val state: State,
     val sex: Sex,
-    val position: Int
+    val position: Int,
+    val holder: AnswerRecyclerViewAdapter.AnswerRecyclerViewHolder
 ) :
     BottomSheetDialogFragment() {
     private val viewModel by activityViewModels<MainViewModel>()
@@ -252,8 +254,16 @@ class OrderBottomDialogFragment(
         dialog?.dismiss()
     }
 
+    private fun userParticipationTrue(holder: AnswerRecyclerViewAdapter.AnswerRecyclerViewHolder) {
+        holder.binding.itemFrame.isEnabled = false
+        holder.binding.participationStatusFalse.setVisibility(false)
+        holder.binding.participationStatusTrue.setVisibility(true)
+    }
+
     private fun success() {
         viewModel.questionClickEvent = false
+        userParticipationTrue(holder)
+
         /*      if(sex == Sex.MAN){
                   if (state == State.ANSWER)
                       else
