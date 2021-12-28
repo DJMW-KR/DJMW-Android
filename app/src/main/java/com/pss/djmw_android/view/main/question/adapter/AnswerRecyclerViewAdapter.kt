@@ -1,6 +1,5 @@
 package com.pss.djmw_android.view.main.question.adapter
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -9,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pss.djmw_android.R
 import com.pss.djmw_android.data.model.Question
 import com.pss.djmw_android.databinding.QuestionRecyclerViewItemBinding
+import com.pss.djmw_android.view.main.question.OrderBottomDialogFragment
 import com.pss.djmw_android.viewmodel.MainViewModel
 import com.pss.djmw_android.widget.extension.setVisibility
 

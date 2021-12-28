@@ -29,6 +29,7 @@ class MainRepository @Inject constructor(
         choiceNumber: Int,
         sex: String
     ): Task<DataSnapshot> {
+        Log.d("TAG", "in side : ${questionName}, $choiceNumber, $sex")
         return when (choiceNumber) {
             0 -> getChoiceNumberQuestionStatistics(questionName, "statistics_one", sex)
             1 -> getChoiceNumberQuestionStatistics(questionName, "statistics_two", sex)
@@ -102,7 +103,8 @@ class MainRepository @Inject constructor(
             3 -> sPosition = "q4"
             4 -> sPosition = "q5"
         }
-        return firebaseDatabase.reference.child("userParticipationInfo").child(uid).child(mode).child(sPosition).setValue(true)
+        return firebaseDatabase.reference.child("userParticipationInfo").child(uid).child(mode)
+            .child(sPosition).setValue(true)
     }
 
     //랭킹 정보 가져오기

@@ -1,4 +1,4 @@
-package com.pss.djmw_android.view.main.question.adapter
+package com.pss.djmw_android.view.main.question
 
 import android.os.Bundle
 import android.util.Log
@@ -11,9 +11,11 @@ import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.pss.djmw_android.R
 import com.pss.djmw_android.databinding.FragmentOrderBottomDialogBinding
+import com.pss.djmw_android.view.main.question.adapter.AnswerRecyclerViewAdapter
+import com.pss.djmw_android.view.main.question.adapter.Sex
+import com.pss.djmw_android.view.main.question.adapter.State
 import com.pss.djmw_android.viewmodel.MainViewModel
 import com.pss.djmw_android.widget.extension.setVisibility
-import java.text.FieldPosition
 
 class OrderBottomDialogFragment(
     val itemClick: (Int) -> Unit,
@@ -74,13 +76,14 @@ class OrderBottomDialogFragment(
             if (state == State.ANSWER) {
                 when (viewModel.eventGetUserInfo.value?.sex) {
                     "man" -> {
+                        Log.d("TAG","in side : ${viewModel.manQuestionList[holder].question}, $num, ${viewModel.eventGetUserInfo.value!!.sex}")
                         viewModel.getQuestionStatistics(
                             viewModel.manQuestionList[holder].question,
                             num,
                             viewModel.eventGetUserInfo.value!!.sex
                         )
                             .addOnSuccessListener {
-
+                                Log.d("TAG","values = ${it.value}, $it")
                                 //가져온 value 가 null 인지 체크 => 질문이 rtdb 와 fireStore 에 잘 들어있는지 확인
                                 if (it.value != null) {
 
@@ -98,18 +101,24 @@ class OrderBottomDialogFragment(
                                                     success()
                                                 }
                                                 .addOnFailureListener {
+                                                    Log.d("TAG","error1")
                                                     error()
                                                 }
                                         }
                                         .addOnFailureListener {
+                                            Log.d("TAG","error2")
+
                                             error()
                                         }
 
                                 } else {
+                                    Log.d("TAG","error3")
+
                                     error()
                                 }
                             }
                             .addOnFailureListener {
+                                Log.d("TAG","error4")
                                 error()
                             }
                     }

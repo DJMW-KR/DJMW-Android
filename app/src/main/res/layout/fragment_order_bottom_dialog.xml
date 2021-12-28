@@ -6,7 +6,7 @@
 
         <variable
             name="fragment"
-            type="com.pss.djmw_android.view.main.question.adapter.OrderBottomDialogFragment" />
+            type="com.pss.djmw_android.view.main.question.OrderBottomDialogFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
