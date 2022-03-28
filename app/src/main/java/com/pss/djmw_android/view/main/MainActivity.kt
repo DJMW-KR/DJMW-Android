@@ -45,26 +45,26 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     }
 
     private fun observeViewModel() {
-        mainViewModel.eventActionView.observe(this, {
+        mainViewModel.eventActionView.observe(this) {
             when (it) {
                 true -> binding.bottomNav.setVisibility(true)
                 false -> binding.bottomNav.setVisibility(false)
             }
-        })
+        }
 
-        mainViewModel.eventUserParticipationInfo.observe(this,{
-            Log.d("로그","user참여 통계 정보 : $it")
-        })
+        mainViewModel.eventUserParticipationInfo.observe(this) {
+            Log.d("로그", "user참여 통계 정보 : $it")
+        }
 
-        mainViewModel.eventGetUserInfo.observe(this, {
+        mainViewModel.eventGetUserInfo.observe(this) {
             Log.d("로그", "값 저장됨 : $it")
             initBottomNavBar()
-        })
+        }
 
-        mainViewModel.eventUserRankingInfo.observe(this, {
+        mainViewModel.eventUserRankingInfo.observe(this) {
             intent.getParcelableExtra<UserInfo>("userInfo")
                 ?.let { mainViewModel.setEventGetUserInfo(it) }
-        })
+        }
     }
 
     private fun initBottomNavBar() {
